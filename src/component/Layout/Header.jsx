@@ -9,16 +9,37 @@ import SearchIcon from "@mui/icons-material/Search";
 
 export default function Header() {
   return (
-    <header className=" flex  text-red-600 bg-black p-5 ">
-      <div className="flex">
-        <HomeIcon sx={{ fontSize: 50 }} />
-        <MovieIcon sx={{ fontSize: 50, display: "block" }} />
-        <CelebritiesIcon className="w-12 h-12 fill-current text-red-600" />
-        <NewsIcon className="w-12 h-12" />
-        <CommunityIcon className=" w-13 h-12 fill-current text-red-600" />
-        <SearchIcon sx={{ fontSize: 50 }} />
+    <header className=" flex  text-red-600 bg-black p-5 justify-between ">
+      <div className="flex items-center text-center">
+        <div className="flex flex-col cursor-pointer w-24">
+          <HomeIcon className="mx-auto" sx={{ fontSize: 40 }} />
+          <p>Home</p>
+        </div>
+        <div className="flex flex-col cursor-pointer w-24">
+          <MovieIcon
+            className="mx-auto"
+            sx={{ fontSize: 40, display: "block" }}
+          />
+          <p>Movie</p>
+        </div>
+        <div className="flex flex-col cursor-pointer w-24">
+          <CelebritiesIcon className="mx-auto w-12 h-12 fill-current text-red-600" />
+          <p>Celebrities</p>
+        </div>
+        <div className="flex flex-col cursor-pointer w-24">
+          <NewsIcon className="mx-auto w-12 h-12" />
+          <p>News</p>
+        </div>
+        <div className="flex flex-col cursor-pointer w-24">
+          <CommunityIcon className=" mx-auto w-13 h-12 fill-current text-red-600" />
+          <p>Community</p>
+        </div>
+        <div className="flex flex-col cursor-pointer w-24 text-center ">
+          <SearchIcon className="mx-auto" sx={{ fontSize: 40 }} />
+          <p>Search</p>
+        </div>
       </div>
-      <div className="flex items-center leading-10 ">
+      <div className="flex items-center ">
         <TheatersIcon sx={{ fontSize: 120 }} />
         <h1 className="text-4xl font-extrabold tracking-tighter ">
           Mmb Movies
