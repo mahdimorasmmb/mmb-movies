@@ -5,6 +5,7 @@ import App from "./App";
 import Layout from "./component/Layout/Layout";
 import Pages from "./pages/Pages";
 import "./index.css";
+import "antd/dist/antd.css";
 
 ReactDOM.render(
   <BrowserRouter>
