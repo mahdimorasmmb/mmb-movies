@@ -6,9 +6,8 @@ import CelebritiesIcon from "../Icon/CelebritiesIcon";
 import NewsIcon from "../Icon/NewsIcon";
 import CommunityIcon from "../Icon/CommunityIcon";
 import SearchIcon from "@mui/icons-material/Search";
-import DropDowns from "../DropDown";
 
-import { Menu, Dropdown, Button } from "antd";
+import { Menu, Dropdown } from "antd";
 
 const menu = (
   <Menu theme="dark">
