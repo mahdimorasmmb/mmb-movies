@@ -10,7 +10,7 @@ import SearchIcon from "@mui/icons-material/Search";
 export default function Header() {
   const [active, setActive] = useState({});
   return (
-    <header className=" flex  text-red-600 bg-black p-5 justify-between overflow-scroll scrollbar-hide  ">
+    <header className=" flex  text-white p-4 justify-between overflow-scroll scrollbar-hide  ">
       <div className="flex items-center text-center">
         <div
           onClick={() => {
@@ -68,7 +68,7 @@ export default function Header() {
           className="group flex flex-col cursor-pointer w-24"
         >
           <CelebritiesIcon
-            className={` w-8 h-8 fill-current text-red-600  mx-auto group-hover:animate-bounce ${
+            className={` w-8 h-8 fill-current text-white  mx-auto group-hover:animate-bounce ${
               active.CelebritiesIcon ? "animate-bounce" : ""
             }`}
           />
@@ -112,7 +112,7 @@ export default function Header() {
           className="group flex flex-col cursor-pointer w-24"
         >
           <CommunityIcon
-            className={` mx-auto w-9 h-9 fill-current text-red-600 group-hover:animate-bounce ${
+            className={` mx-auto w-9 h-9 fill-current text-white group-hover:animate-bounce ${
               active.CommunityIcon ? "animate-bounce" : ""
             }`}
           />
