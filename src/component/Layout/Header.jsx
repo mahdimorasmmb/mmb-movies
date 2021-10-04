@@ -12,13 +12,22 @@ import { Menu, Dropdown } from "antd";
 const menu = (
   <Menu theme="dark">
     <Menu.Item>
-      <a
-        target="_blank"
-        rel="noopener noreferrer"
-        href="https://www.antgroup.com"
+      <Dropdown
+        overlay={
+          <Menu className="absolute left-24 text-lg">
+            <Menu.Item></Menu.Item>
+          </Menu>
+        }
+        placement="bottomLeft"
       >
-        1st menu item
-      </a>
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://www.antgroup.com"
+        >
+          1st menu item
+        </a>
+      </Dropdown>
     </Menu.Item>
     <Menu.Item>
       <a
@@ -43,7 +52,7 @@ const menu = (
 
 export default function Header() {
   return (
-    <header className=" flex  text-gray-200 p-4 justify-between  scrollbar-hide  ">
+    <header className=" flex  text-gray-200 px-4  justify-between  scrollbar-hide  ">
       <div className="flex items-center text-center">
         <Dropdown overlay={menu} placement="bottomLeft" arrow>
           <div

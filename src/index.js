@@ -6,6 +6,7 @@ import Layout from "./component/Layout/Layout";
 import Pages from "./pages/Pages";
 import "./index.css";
 import "antd/dist/antd.css";
+import "swiper/swiper-bundle.min.css";
 
 ReactDOM.render(
   <BrowserRouter>
