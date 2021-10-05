@@ -9,7 +9,7 @@ export default function MovieSwiper({ children }) {
   const { data, loading } = useMovieDB("movie/popular");
   return (
     <Swiper
-      spaceBetween={50}
+      spaceBetween={10}
       slidesPerView={3}
       onSlideChange={() => console.log("slide change")}
       onSwiper={(swiper) => console.log(swiper)}
@@ -18,7 +18,7 @@ export default function MovieSwiper({ children }) {
         <h1>is loading....</h1>
       ) : (
         data.results.map((movie) => (
-          <SwiperSlide className="w-full">
+          <SwiperSlide className="w-full px-6 ">
             <CardMovie movie={movie} />
           </SwiperSlide>
         ))

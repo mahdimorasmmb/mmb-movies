@@ -5,7 +5,7 @@ export default function WhatPopular() {
     Streaming: true,
   });
   return (
-    <div className="flex space-x-20">
+    <div className="flex space-x-20 px-5 pt-3">
       <h2 className="text-gray-100 text-xl">What's Popular</h2>
       <ul className="flex list-none flex-nowrap  bg-gray-200 px-3 py-3 rounded-full text-gray-900 ">
         <li>
@@ -14,10 +14,8 @@ export default function WhatPopular() {
               setActive({});
               setActive({ Streaming: true });
             }}
-            className={`    text-sm font-bold py-3 px-4 rounded-full transition ease-in duration-700  ${
-              active.Streaming
-                ? "text-gray-50 bg-gradient-to-r  from-greenHd to-greenHl "
-                : ""
+            className={`    text-sm font-bold py-3 px-4 rounded-full transition ease-in duration-900    ${
+              active.Streaming ? " text-gray-50 bg-greenHl " : ""
             }`}
             href="#"
           >

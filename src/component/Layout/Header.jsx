@@ -52,14 +52,14 @@ const menu = (
 
 export default function Header() {
   return (
-    <header className=" flex  text-gray-200 px-4  justify-between  scrollbar-hide  ">
-      <div className="flex items-center text-center">
-        <Dropdown overlay={menu} placement="bottomLeft" arrow>
+    <header className=" sticky top-0 flex  text-gray-200  bg-greenHl   justify-between shadow-3xl px-8   ">
+      <div className="flex items-center text-center  ">
+        <Dropdown className="" overlay={menu} placement="bottomLeft" arrow>
           <div
-            className={`text-white group flex flex-col cursor-pointer w-24 `}
+            className={`text-white  group flex flex-col cursor-pointer w-24 `}
           >
             <HomeIcon
-              className={`mx-auto group-hover:animate-bounce $`}
+              className={` mx-auto group-hover:animate-bounce $`}
               sx={{ fontSize: 30 }}
             />
             <p
@@ -135,7 +135,7 @@ export default function Header() {
         </Dropdown>
       </div>
       <div className="group flex items-center ">
-        <TheatersIcon sx={{ fontSize: 120 }} />
+        <TheatersIcon sx={{ fontSize: 90 }} />
         <h1 className="text-4xl text-gray-200 font-extrabold tracking-tighter ">
           Mmb Movies
         </h1>
