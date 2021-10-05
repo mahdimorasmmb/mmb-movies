@@ -6,26 +6,29 @@ import { StarTwoTone } from "@ant-design/icons";
 
 export default function CardMovie({ movie }) {
   return (
-    <div class="wrapper w-9/12 py-3  bg-transparent antialiased text-gray-900">
+    <div class="wrapper h-full   py-1  bg-transparent antialiased text-gray-900">
       <div>
         <img
           src={imgSrc(movie.poster_path, "w780")}
-          className="w-full object-cover object-center rounded-lg shadow-md"
+          className="h-full  object-cover object-center rounded-lg shadow-md"
         />
-
-        <div className="relative text px-4 -mt-7">
+        <div className="relative text px-4 -mt-3">
           <div className="bg-greenHd p-6 rounded-lg shadow-lg">
-            <p className="text-xl text-center  text-gray-100">
-              {movie.title.length > 25
+            <p className="text-sm text-center font-bold  text-gray-100">
+              {movie.name
+                ? movie.name.length > 25
+                  ? `${movie.name.substring(0, 25)}...`
+                  : movie.name
+                : movie.title.length > 25
                 ? `${movie.title.substring(0, 25)}...`
                 : movie.title}
             </p>
 
-            <div className="mt-4 flex justify-between">
-              <button className=" px-4 text-center   text-gray-100 bg-greenHl   opacity-60 rounded-lg hover:opacity-100">
+            <div className=" flex justify-between">
+              <button className=" px-4 text-center font-bold   text-gray-100 bg-greenHl   rounded-lg hover:text-greenHl hover:bg-gray-100">
                 More ...
               </button>
-              <h2 className="text-yellow-400 font-extrabold text-3xl">
+              <h2 className="text-yellow-400 font-extrabold text-2xl">
                 <StarTwoTone twoToneColor="#FBBF24" />
                 {movie.vote_average}
               </h2>

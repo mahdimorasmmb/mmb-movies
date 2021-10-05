@@ -52,7 +52,7 @@ const menu = (
 
 export default function Header() {
   return (
-    <header className=" sticky top-0 flex  text-gray-200  bg-greenHl   justify-between shadow-3xl px-8   ">
+    <header className=" sticky top-0 flex z-50  text-gray-200  bg-greenHl   justify-between shadow-3xl px-8   ">
       <div className="flex items-center text-center  ">
         <Dropdown className="" overlay={menu} placement="bottomLeft" arrow>
           <div

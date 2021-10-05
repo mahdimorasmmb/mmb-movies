@@ -1,73 +1,39 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
+import { MovieOrTv } from "../context/MovieOrTv";
 
 export default function WhatPopular() {
-  const [active, setActive] = useState({
-    Streaming: true,
-  });
+  const { active, setActive } = useContext(MovieOrTv);
   return (
-    <div className="flex space-x-20 px-5 pt-3">
-      <h2 className="text-gray-100 text-xl">What's Popular</h2>
+    <div className="flex px-5 pt-3">
       <ul className="flex list-none flex-nowrap  bg-gray-200 px-3 py-3 rounded-full text-gray-900 ">
         <li>
           <a
             onClick={() => {
-              setActive({});
-              setActive({ Streaming: true });
+              setActive("");
+              setActive("movie");
             }}
             className={`    text-sm font-bold py-3 px-4 rounded-full transition ease-in duration-900    ${
-              active.Streaming ? " text-gray-50 bg-greenHl " : ""
+              active === "movie" ? " text-gray-50 bg-greenHl " : ""
             }`}
             href="#"
           >
-            Streaming
+            Movie
           </a>
         </li>
         <li>
           <a
             onClick={() => {
-              setActive({});
-              setActive({ OnTv: true });
+              setActive("");
+              setActive("tv");
             }}
             className={`    text-sm font-bold py-3 px-4 rounded-full transition ease-in duration-700  ${
-              active.OnTv
+              active === "tv"
                 ? "text-gray-50 bg-gradient-to-r  from-greenHd to-greenHl "
                 : ""
             }`}
             href="#"
           >
-            On TV
-          </a>
-        </li>
-        <li>
-          <a
-            onClick={() => {
-              setActive({});
-              setActive({ ForR: true });
-            }}
-            className={`    text-sm font-bold py-3 px-4 rounded-full transition ease-in duration-700  ${
-              active.ForR
-                ? "text-gray-50 bg-gradient-to-r  from-greenHd to-greenHl "
-                : ""
-            }`}
-            href="#"
-          >
-            For Rent
-          </a>
-        </li>
-        <li>
-          <a
-            onClick={() => {
-              setActive({});
-              setActive({ InTH: true });
-            }}
-            className={`    text-sm font-bold py-3 px-4 rounded-full transition ease-in duration-700  ${
-              active.InTH
-                ? "text-gray-50 bg-gradient-to-r  from-greenHd to-greenHl "
-                : ""
-            }`}
-            href="#"
-          >
-            In Theaters
+            TV
           </a>
         </li>
       </ul>

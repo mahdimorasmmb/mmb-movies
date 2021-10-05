@@ -1,17 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext } from "react";
 import useMovieDB from "../../hooks/useMovieDB";
 import CardMovie from "../CardMovie";
 import MovieSwiper from "../MovieSwiper";
+import { MovieOrTv } from "../../context/MovieOrTv";
 
 export default function PopMoviesSlider() {
-  const { data, loading } = useMovieDB("movie/popular");
+  const { data, loading } = useMovieDB(
+    `${useContext(MovieOrTv).active}/popular`
+  );
   return (
-    <div>
-      {/* {loading ? (
-        <h1>is loading....</h1>
-      ) : (
-        data.results.map((movie) => <MovieSwiper />)
-      )} */}
-    </div>
+    <>
+      <MovieSwiper data={data} loading={loading} />
+    </>
   );
 }

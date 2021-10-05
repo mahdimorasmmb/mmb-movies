@@ -5,20 +5,19 @@ import CardMovie from "./CardMovie";
 
 // Import Swiper styles
 
-export default function MovieSwiper({ children }) {
-  const { data, loading } = useMovieDB("movie/popular");
+export default function MovieSwiper({ loading, data }) {
   return (
     <Swiper
-      spaceBetween={10}
-      slidesPerView={3}
+      spaceBetween={5}
+      slidesPerView={4}
       onSlideChange={() => console.log("slide change")}
       onSwiper={(swiper) => console.log(swiper)}
     >
       {loading ? (
         <h1>is loading....</h1>
       ) : (
-        data.results.map((movie) => (
-          <SwiperSlide className="w-full px-6 ">
+        data?.results.map((movie) => (
+          <SwiperSlide className=" w-8/12 px-6 ">
             <CardMovie movie={movie} />
           </SwiperSlide>
         ))
