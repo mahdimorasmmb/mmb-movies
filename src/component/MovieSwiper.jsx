@@ -8,8 +8,18 @@ import CardMovie from "./CardMovie";
 export default function MovieSwiper({ loading, data }) {
   return (
     <Swiper
-      spaceBetween={5}
-      slidesPerView={4}
+      breakpoints={{
+        640: {
+          width: 640,
+          slidesPerView: 1,
+        },
+        768: {
+          width: 768,
+          slidesPerView: 2,
+        },
+      }}
+      spaceBetween={3}
+      slidesPerView={5}
       onSlideChange={() => console.log("slide change")}
       onSwiper={(swiper) => console.log(swiper)}
     >

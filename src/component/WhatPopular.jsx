@@ -4,7 +4,7 @@ import { MovieOrTv } from "../context/MovieOrTv";
 export default function WhatPopular() {
   const { active, setActive } = useContext(MovieOrTv);
   return (
-    <div className="flex px-5 pt-3">
+    <div className="flex px-5 pt-3 justify-center">
       <ul className="flex list-none flex-nowrap  bg-gray-200 px-3 py-3 rounded-full text-gray-900 ">
         <li>
           <a

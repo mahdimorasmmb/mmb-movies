@@ -1,6 +1,7 @@
 import React from "react";
 import { Route, Switch } from "react-router";
 import Home from "./Home/Home";
+import MovieInfoPage from "./Movie/MovieInfoPage";
 import People from "./People/People";
 
 export default function Pages() {
@@ -9,8 +10,8 @@ export default function Pages() {
       <Route path="/" exact>
         <Home />
       </Route>
-      <Route path="/people">
-        <People />
+      <Route path="/movie-info/:id">
+        <MovieInfoPage />
       </Route>
     </Switch>
   );
