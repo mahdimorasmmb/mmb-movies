@@ -9,15 +9,17 @@ export default function MovieInfoPage() {
   const { id } = useParams();
   const { data, loading } = useMovieDB(`/movie/${id}`);
   return (
-    <div className=" p-4 bg-greenHd  flex text-gray-100">
+    <div className=" p-4 bg-greenHd w-full  flex flex-col sm:flex-row text-gray-100">
       {/* <!--Banner image--> */}
-      <img
-        className="rounded-lg max-w-sm"
-        src={imgSrc(data?.poster_path, "w500")}
-      />
+      <div className="sm:w-1/2 w-full p-5">
+        <img
+          className="rounded-lg w-full object-cover"
+          src={imgSrc(data?.poster_path, "w500")}
+        />
+      </div>
       {/* 
     <!--Tag--> */}
-      <div className="flex flex-col p-10 ">
+      <div className="flex sm:w-1/2 w-full flex-col p-5 ">
         <h1 className="font-semibold text-gray-100 leading-none text-xl mt-1 capitalize truncate">
           {data?.belongs_to_collection.name}
         </h1>
@@ -27,20 +29,18 @@ export default function MovieInfoPage() {
             {data?.overview}
           </p>
         </div>
-        <div className=" flex items-center space-x-2 mt-20">
-          <div className="flex space-x-32">
-            <a
-              href={data?.homepage}
-              className=" px-4 text-center  font-bold   text-gray-100 bg-greenHl   rounded-lg hover:text-greenHl hover:bg-gray-100"
-            >
-              page
-            </a>
-            <h2 className="text-yellow-400 font-extrabold text-2xl">
-              <StarTwoTone twoToneColor="#FBBF24" />
-              {data?.vote_average}
-            </h2>
-            <p className=" font-semibold text-sm">{data?.release_date}</p>
-          </div>
+        <div className=" flex items-center sm:justify-around justify-between mt-20">
+          <a
+            href={data?.homepage}
+            className="inline-block  px-3 py-2 text-sm bg-greenHl text-gray-200 rounded-lg font-semibold uppercase lg:w-auto hover:text-greenHl hover:bg-gray-200"
+          >
+            page
+          </a>
+          <h2 className="text-yellow-400 font-extrabold text-2xl">
+            <StarTwoTone twoToneColor="#FBBF24" />
+            {data?.vote_average}
+          </h2>
+          <p className=" font-semibold text-sm">{data?.release_date}</p>
         </div>
       </div>
     </div>
