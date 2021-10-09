@@ -10,11 +10,11 @@ export default function CardMovie({ movie }) {
     <div className=" w-auto justify-center p-20 bg-greenHl antialiased text-gray-900">
       <img
         src={imgSrc(movie.poster_path, "w780")}
-        className="h-full   object-cover object-center rounded-lg shadow-md"
+        className=" h-auto object-contain  rounded-lg shadow-md"
       />
       <div className="relative text px-4 -mt-3">
         <div className="bg-greenHd p-6 rounded-lg shadow-lg">
-          <p className="text-sm text-center font-bold  text-gray-100">
+          <p className="md:text-sm text-xs text-center font-bold  text-gray-100">
             {movie.name
               ? movie.name.length > 25
                 ? `${movie.name.substring(0, 25)}...`
@@ -25,7 +25,7 @@ export default function CardMovie({ movie }) {
           </p>
 
           <div className=" flex justify-between">
-            <button className=" px-4 text-center font-bold   text-gray-100 bg-greenHl   rounded-lg hover:text-greenHl hover:bg-gray-100">
+            <button className=" px-4 text-center md:font-bold text-xs font-extralight  text-gray-100 bg-greenHl   rounded-lg hover:text-greenHl hover:bg-gray-100">
               {movie.title ? (
                 <Link to={`/movie-info/${movie.id}`}>more info movie</Link>
               ) : (
