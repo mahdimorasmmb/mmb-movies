@@ -25,7 +25,7 @@ export default function CardMovie({ movie }) {
           </p>
 
           <div className=" flex justify-between">
-            <button className=" px-4 text-center md:font-bold text-xs font-extralight  text-gray-100 bg-greenHl   rounded-lg hover:text-greenHl hover:bg-gray-100">
+            <button className="px-1 lg:px-4 text-center md:font-bold text-xs font-extralight  text-gray-100 bg-greenHl   rounded-lg hover:text-greenHl hover:bg-gray-100">
               {movie.title ? (
                 <Link to={`/movie-info/${movie.id}`}>more info movie</Link>
               ) : (
