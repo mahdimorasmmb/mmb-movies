@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 
 export default function CardMovie({ movie }) {
   return (
-    <div className=" w-auto justify-center lg:p-5 p-12 antialiased text-gray-900">
+    <div className=" w-auto justify-center lg:p-5 py-5 px-12 antialiased text-gray-900">
       <img
         src={imgSrc(movie.poster_path, "w780")}
         className=" w-full h-auto object-contain  rounded-lg shadow-md"
