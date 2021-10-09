@@ -19,7 +19,7 @@ export default function MovieInfoPage() {
       </div>
       {/* 
     <!--Tag--> */}
-      <div className="flex sm:w-1/2 w-full flex-col p-5 ">
+      <div className="flex sm:w-1/2 w-full my-auto  flex-col p-5 ">
         <h1 className="font-semibold text-gray-100 leading-none text-xl mt-1 capitalize truncate">
           {data?.belongs_to_collection.name}
         </h1>

@@ -9,10 +9,13 @@ import SearchIcon from "@mui/icons-material/Search";
 import { MenuOutlined } from "@ant-design/icons";
 
 import { Menu, Dropdown } from "antd";
+import { Link } from "react-router-dom";
 
 const itemMene = (
   <Menu theme="dark">
-    <Menu.Item>Home</Menu.Item>
+    <Menu.Item>
+      <Link to="/">Home</Link>
+    </Menu.Item>
     <Menu.Item>Movie</Menu.Item>
     <Menu.Item>Celebrities</Menu.Item>
     <Menu.Item>News</Menu.Item>
@@ -77,26 +80,19 @@ export default function Header() {
         <div className="hidden lg:block">
           <TheatersIcon sx={{ fontSize: 90 }} />
         </div>
-        <Dropdown
-          className="hidden lg:block"
-          overlay={menu}
-          placement="bottomLeft"
-          arrow
+        <div
+          className={`text-white  group  flex-col cursor-pointer w-24 hidden lg:flex `}
         >
-          <div
-            className={`text-white  group flex flex-col cursor-pointer w-24 `}
+          <HomeIcon
+            className={` mx-auto group-hover:animate-bounce $`}
+            sx={{ fontSize: 30 }}
+          />
+          <p
+            className={`uppercase let tracking-widest mx-auto text-xs opacity-0  group-hover:opacity-100 `}
           >
-            <HomeIcon
-              className={` mx-auto group-hover:animate-bounce $`}
-              sx={{ fontSize: 30 }}
-            />
-            <p
-              className={`uppercase let tracking-widest mx-auto text-xs opacity-0  group-hover:opacity-100 `}
-            >
-              Home
-            </p>
-          </div>
-        </Dropdown>
+            <Link to="/">Home</Link>
+          </p>
+        </div>
 
         <Dropdown
           className="hidden lg:block"
