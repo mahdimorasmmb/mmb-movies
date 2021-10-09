@@ -23,7 +23,7 @@ module.exports = {
     },
   },
   variants: {
-    display: ["last", "hover"],
+    hidden: ["last", "hover"],
     animation: ["group-hover"],
     extend: {},
   },

@@ -6,6 +6,7 @@ import CelebritiesIcon from "../Icon/CelebritiesIcon";
 import NewsIcon from "../Icon/NewsIcon";
 import CommunityIcon from "../Icon/CommunityIcon";
 import SearchIcon from "@mui/icons-material/Search";
+import { MenuOutlined } from "@ant-design/icons";
 
 import { Menu, Dropdown } from "antd";
 
@@ -52,9 +53,25 @@ const menu = (
 
 export default function Header() {
   return (
-    <header className=" sticky top-0 flex z-50  text-gray-200  bg-greenHl   justify-between shadow-3xl px-8   ">
-      <div className="flex items-center text-center  ">
-        <Dropdown className="" overlay={menu} placement="bottomLeft" arrow>
+    <header className="flex  text-gray-200  bg-greenHl items-center   justify-around shadow-3xl px-8  py-2  ">
+      <Dropdown overlay={menu} trigger={["click"]}>
+        <div className="  lg:hidden">
+          <MenuOutlined style={{ fontSize: 40 }} />
+        </div>
+      </Dropdown>
+      <div className=" lg:w-full flex  items-center justify-around text-center  ">
+        <h2 className="lg:text-2xl sm:block text-xl ml-2  text-gray-200 lg:font-extrabold  ">
+          MmbMovie
+        </h2>
+        <div className="hidden lg:block">
+          <TheatersIcon sx={{ fontSize: 90 }} />
+        </div>
+        <Dropdown
+          className="hidden lg:block"
+          overlay={menu}
+          placement="bottomLeft"
+          arrow
+        >
           <div
             className={`text-white  group flex flex-col cursor-pointer w-24 `}
           >
@@ -70,7 +87,12 @@ export default function Header() {
           </div>
         </Dropdown>
 
-        <Dropdown overlay={menu} placement="bottomLeft" arrow>
+        <Dropdown
+          className="hidden lg:block"
+          overlay={menu}
+          placement="bottomLeft"
+          arrow
+        >
           <div className="group flex flex-col cursor-pointer w-24">
             <MovieIcon
               className={`mx-auto group-hover:animate-bounce `}
@@ -84,7 +106,12 @@ export default function Header() {
           </div>
         </Dropdown>
 
-        <Dropdown overlay={menu} placement="bottomLeft" arrow>
+        <Dropdown
+          className="hidden lg:block"
+          overlay={menu}
+          placement="bottomLeft"
+          arrow
+        >
           <div className="group flex flex-col cursor-pointer w-24">
             <CelebritiesIcon
               className={` w-8 h-8 fill-current text-white  mx-auto group-hover:animate-bounce `}
@@ -96,7 +123,12 @@ export default function Header() {
             </p>
           </div>
         </Dropdown>
-        <Dropdown overlay={menu} placement="bottomLeft" arrow>
+        <Dropdown
+          className="hidden lg:block"
+          overlay={menu}
+          placement="bottomLeft"
+          arrow
+        >
           <div className="group flex flex-col cursor-pointer w-24">
             <NewsIcon
               className={`mx-auto w-8 h-8 group-hover:animate-bounce `}
@@ -108,7 +140,12 @@ export default function Header() {
             </p>
           </div>
         </Dropdown>
-        <Dropdown overlay={menu} placement="bottomLeft" arrow>
+        <Dropdown
+          className="hidden lg:block"
+          overlay={menu}
+          placement="bottomLeft"
+          arrow
+        >
           <div className="group flex flex-col cursor-pointer w-24">
             <CommunityIcon
               className={` mx-auto w-9 h-9 fill-current text-white group-hover:animate-bounce `}
@@ -120,7 +157,12 @@ export default function Header() {
             </p>
           </div>
         </Dropdown>
-        <Dropdown overlay={menu} placement="bottomLeft" arrow>
+        <Dropdown
+          className="hidden lg:block"
+          overlay={menu}
+          placement="bottomLeft"
+          arrow
+        >
           <div className="group flex flex-col cursor-pointer w-24 text-center ">
             <SearchIcon
               className={`mx-auto group-hover:animate-bounce `}
@@ -134,11 +176,13 @@ export default function Header() {
           </div>
         </Dropdown>
       </div>
-      <div className="group flex items-center ">
-        <TheatersIcon sx={{ fontSize: 90 }} />
-        <h1 className="text-4xl text-gray-200 font-extrabold tracking-tighter ">
-          Mmb Movies
-        </h1>
+      <div className="flex w-full items-center justify-end  ">
+        <button className=" mr-2 inline-block px-3 py-2 text-sm bg-gray-200 text-greenHd rounded-lg font-semibold uppercase lg:w-auto hover:text-gray-200 hover:bg-greenHd">
+          login
+        </button>
+        <button className=" inline-block  px-3 py-2 text-sm bg-gray-200 text-greenHd rounded-lg font-semibold uppercase lg:w-auto hover:text-gray-200 hover:bg-greenHd">
+          sign in
+        </button>
       </div>
     </header>
   );

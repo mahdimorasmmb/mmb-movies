@@ -9,17 +9,15 @@ export default function MovieSwiper({ loading, data }) {
   return (
     <Swiper
       breakpoints={{
-        640: {
-          width: 640,
+        400: {
           slidesPerView: 1,
+          spaceBetween: 10,
         },
         768: {
-          width: 768,
-          slidesPerView: 2,
+          slidesPerView: 3,
+          spaceBetween: 10,
         },
       }}
-      spaceBetween={3}
-      slidesPerView={5}
       onSlideChange={() => console.log("slide change")}
       onSwiper={(swiper) => console.log(swiper)}
     >
@@ -27,7 +25,7 @@ export default function MovieSwiper({ loading, data }) {
         <h1>is loading....</h1>
       ) : (
         data?.results.map((movie) => (
-          <SwiperSlide className=" w-8/12 px-6 ">
+          <SwiperSlide>
             <CardMovie movie={movie} />
           </SwiperSlide>
         ))
