@@ -14,8 +14,12 @@ export default function MovieSwiper({ loading, data }) {
           spaceBetween: 10,
         },
         768: {
-          slidesPerView: 3,
+          slidesPerView: 2,
           spaceBetween: 10,
+        },
+        1279: {
+          slidesPerView: 3,
+          spaceBetween: 5,
         },
       }}
       onSlideChange={() => console.log("slide change")}

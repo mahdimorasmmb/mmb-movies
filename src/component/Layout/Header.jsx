@@ -10,6 +10,17 @@ import { MenuOutlined } from "@ant-design/icons";
 
 import { Menu, Dropdown } from "antd";
 
+const itemMene = (
+  <Menu theme="dark">
+    <Menu.Item>Home</Menu.Item>
+    <Menu.Item>Movie</Menu.Item>
+    <Menu.Item>Celebrities</Menu.Item>
+    <Menu.Item>News</Menu.Item>
+    <Menu.Item>Community</Menu.Item>
+    <Menu.Item>Search</Menu.Item>
+  </Menu>
+);
+
 const menu = (
   <Menu theme="dark">
     <Menu.Item>
@@ -53,13 +64,13 @@ const menu = (
 
 export default function Header() {
   return (
-    <header className="flex  text-gray-200  bg-greenHl items-center   justify-around shadow-3xl px-8  py-2  ">
-      <Dropdown overlay={menu} trigger={["click"]}>
+    <header className="flex  text-gray-200  bg-greenHl items-center  lg:justify-around  justify-between shadow-3xl px-8  py-2  ">
+      <Dropdown overlay={itemMene} trigger={["click"]}>
         <div className="  lg:hidden">
           <MenuOutlined style={{ fontSize: 40 }} />
         </div>
       </Dropdown>
-      <div className=" lg:w-full flex  items-center justify-around text-center  ">
+      <div className=" lg:w-full flex  items-center lg:justify-around  justify-between text-center  ">
         <h2 className="lg:text-2xl sm:block text-xl ml-2  text-gray-200 lg:font-extrabold  ">
           MmbMovie
         </h2>
@@ -176,7 +187,7 @@ export default function Header() {
           </div>
         </Dropdown>
       </div>
-      <div className="flex w-full items-center justify-end  ">
+      <div className="flex w-full items-center justify-end   ">
         <button className=" mr-2 inline-block px-3 py-2 text-sm bg-gray-200 text-greenHd rounded-lg font-semibold uppercase lg:w-auto hover:text-gray-200 hover:bg-greenHd">
           login
         </button>

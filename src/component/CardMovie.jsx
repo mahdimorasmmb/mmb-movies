@@ -7,10 +7,10 @@ import { Link } from "react-router-dom";
 
 export default function CardMovie({ movie }) {
   return (
-    <div className=" w-auto justify-center p-20 bg-greenHl antialiased text-gray-900">
+    <div className=" w-auto justify-center lg:p-5 p-12 antialiased text-gray-900">
       <img
         src={imgSrc(movie.poster_path, "w780")}
-        className=" h-auto object-contain  rounded-lg shadow-md"
+        className=" w-full h-auto object-contain  rounded-lg shadow-md"
       />
       <div className="relative text px-4 -mt-3">
         <div className="bg-greenHd p-6 rounded-lg shadow-lg">
