@@ -46,10 +46,9 @@ export default function Login() {
         )
       ).json();
       if (session.success) {
-        console.log(session);
         history.push("/");
         console.log("mm");
-        accountAction.login(session.session_id);
+        accountAction.login({ session: session.session_id });
       }
     }
   }

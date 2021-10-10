@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import TheatersIcon from "@mui/icons-material/Theaters";
 import HomeIcon from "@mui/icons-material/Home";
 import MovieIcon from "@mui/icons-material/Movie";
@@ -10,6 +10,7 @@ import { MenuOutlined } from "@ant-design/icons";
 
 import { Menu, Dropdown } from "antd";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const itemMene = (
   <Menu theme="dark">
@@ -66,6 +67,22 @@ const menu = (
 );
 
 export default function Header() {
+  const [user, setUser] = useState("");
+  const account = useSelector((state) => state.account);
+
+  async function getPro() {
+    const profile = await (
+      await fetch(
+        `https://api.themoviedb.org/3/account?api_key=3cba95d220b545b9996fa206ce1363f6&session_id=${account.session}`
+      )
+    ).json();
+    setUser(profile);
+    console.log(profile);
+  }
+
+  useEffect(() => {
+    getPro();
+  }, []);
   return (
     <header className="flex  text-gray-200  bg-greenHl items-center  lg:justify-around  justify-between shadow-3xl px-8  py-2  ">
       <Dropdown overlay={itemMene} trigger={["click"]}>
@@ -183,6 +200,7 @@ export default function Header() {
           </div>
         </Dropdown>
       </div>
+      {}
       <div className="flex w-full items-center justify-end   ">
         <Link
           to="/login"
