@@ -184,9 +184,12 @@ export default function Header() {
         </Dropdown>
       </div>
       <div className="flex w-full items-center justify-end   ">
-        <button className=" mr-2 inline-block px-3 py-2 text-sm bg-gray-200 text-greenHd rounded-lg font-semibold uppercase lg:w-auto hover:text-gray-200 hover:bg-greenHd">
+        <Link
+          to="/login"
+          className=" mr-2 inline-block px-3 py-2 text-sm bg-gray-200 text-greenHd rounded-lg font-semibold uppercase lg:w-auto hover:text-gray-200 hover:bg-greenHd"
+        >
           login
-        </button>
+        </Link>
         <button className=" inline-block  px-3 py-2 text-sm bg-gray-200 text-greenHd rounded-lg font-semibold uppercase lg:w-auto hover:text-gray-200 hover:bg-greenHd">
           sign in
         </button>
