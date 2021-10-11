@@ -13,6 +13,7 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import profileAction from "../../store/actions/profileAction";
 import imgSrc from "../../helpers/imgSrc";
+import { useHistory } from "react-router";
 
 const itemMene = (
   <Menu theme="dark">
@@ -69,11 +70,26 @@ const menu = (
 );
 
 export default function Header() {
+  const history = useHistory();
   const profile = useSelector((state) => state.profile);
   console.log(!profile);
   useEffect(() => {
     profileAction.getProfile();
   }, []);
+  const itemsProfile = (
+    <Menu theme="dark">
+      <Menu.Item>
+        <button
+          onClick={() => {
+            profileAction.logOut(history);
+          }}
+        >
+          {" "}
+          Logout
+        </button>
+      </Menu.Item>
+    </Menu>
+  );
 
   return (
     <header className="flex  text-gray-200  bg-greenHl items-center  lg:justify-around  justify-between shadow-3xl px-8  py-2  ">
@@ -193,12 +209,19 @@ export default function Header() {
         </Dropdown>
       </div>
       {profile ? (
-        <img
-          title={profile.username}
-          className="inline object-cover w-12 h-12 rounded-full mr-5"
-          src={imgSrc(profile.avatar.tmdb.avatar_path, "w185")}
-          alt={profile.username}
-        />
+        <Dropdown
+          overlay={itemsProfile}
+          placement="bottomLeft"
+          trigger={["click"]}
+          arrow
+        >
+          <img
+            title={profile.username}
+            className="inline object-cover w-12 h-12 rounded-full mr-5"
+            src={imgSrc(profile.avatar.tmdb.avatar_path, "w185")}
+            alt={profile.username}
+          />
+        </Dropdown>
       ) : (
         <div className="flex w-full items-center justify-end   ">
           <Link
@@ -207,9 +230,9 @@ export default function Header() {
           >
             login
           </Link>
-          <button className=" inline-block  px-3 py-2 text-sm bg-gray-200 text-greenHd rounded-lg font-semibold uppercase lg:w-auto hover:text-gray-200 hover:bg-greenHd">
+          {/* <button className=" inline-block  px-3 py-2 text-sm bg-gray-200 text-greenHd rounded-lg font-semibold uppercase lg:w-auto hover:text-gray-200 hover:bg-greenHd">
             sign in
-          </button>
+          </button> */}
         </div>
       )}
     </header>

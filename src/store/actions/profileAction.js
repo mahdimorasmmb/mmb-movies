@@ -1,6 +1,6 @@
 import { bindActionCreators } from "redux";
 import { apiAccount } from "../../services/apiAccount";
-import { SET_PROFILE } from "../constant/constant";
+import { LOG_OUT, SET_PROFILE } from "../constant/constant";
 import { store } from "../store";
 import errorMessageAction from "./errorMessageAction";
 
@@ -23,9 +23,18 @@ function getProfile() {
   };
 }
 
+function logOut(history) {
+  return async (dispatch) => {
+    dispatch({ type: LOG_OUT });
+    window.localStorage.removeItem("profile");
+    history.push("/");
+  };
+}
+
 const profileAction = bindActionCreators(
   {
     getProfile,
+    logOut,
   },
   store.dispatch
 );
