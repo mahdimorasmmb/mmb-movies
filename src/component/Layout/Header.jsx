@@ -11,6 +11,8 @@ import { MenuOutlined } from "@ant-design/icons";
 import { Menu, Dropdown } from "antd";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import profileAction from "../../store/actions/profileAction";
+import imgSrc from "../../helpers/imgSrc";
 
 const itemMene = (
   <Menu theme="dark">
@@ -67,22 +69,12 @@ const menu = (
 );
 
 export default function Header() {
-  const [user, setUser] = useState("");
-  const account = useSelector((state) => state.account);
-
-  async function getPro() {
-    const profile = await (
-      await fetch(
-        `https://api.themoviedb.org/3/account?api_key=3cba95d220b545b9996fa206ce1363f6&session_id=${account.session}`
-      )
-    ).json();
-    setUser(profile);
-    console.log(profile);
-  }
-
+  const profile = useSelector((state) => state.profile);
+  console.log(!profile);
   useEffect(() => {
-    getPro();
+    profileAction.getProfile();
   }, []);
+
   return (
     <header className="flex  text-gray-200  bg-greenHl items-center  lg:justify-around  justify-between shadow-3xl px-8  py-2  ">
       <Dropdown overlay={itemMene} trigger={["click"]}>
@@ -200,18 +192,26 @@ export default function Header() {
           </div>
         </Dropdown>
       </div>
-      {}
-      <div className="flex w-full items-center justify-end   ">
-        <Link
-          to="/login"
-          className=" mr-2 inline-block px-3 py-2 text-sm bg-gray-200 text-greenHd rounded-lg font-semibold uppercase lg:w-auto hover:text-gray-200 hover:bg-greenHd"
-        >
-          login
-        </Link>
-        <button className=" inline-block  px-3 py-2 text-sm bg-gray-200 text-greenHd rounded-lg font-semibold uppercase lg:w-auto hover:text-gray-200 hover:bg-greenHd">
-          sign in
-        </button>
-      </div>
+      {profile ? (
+        <img
+          title={profile.username}
+          className="inline object-cover w-12 h-12 rounded-full mr-5"
+          src={imgSrc(profile.avatar.tmdb.avatar_path, "w185")}
+          alt={profile.username}
+        />
+      ) : (
+        <div className="flex w-full items-center justify-end   ">
+          <Link
+            to="/login"
+            className=" mr-2 inline-block px-3 py-2 text-sm bg-gray-200 text-greenHd rounded-lg font-semibold uppercase lg:w-auto hover:text-gray-200 hover:bg-greenHd"
+          >
+            login
+          </Link>
+          <button className=" inline-block  px-3 py-2 text-sm bg-gray-200 text-greenHd rounded-lg font-semibold uppercase lg:w-auto hover:text-gray-200 hover:bg-greenHd">
+            sign in
+          </button>
+        </div>
+      )}
     </header>
   );
 }

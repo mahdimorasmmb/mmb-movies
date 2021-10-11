@@ -3,61 +3,16 @@ import { useHistory } from "react-router";
 import accountAction from "../../store/actions/accountAction";
 
 export default function Login() {
-  const [email, setEmail] = useState("");
+  const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const history = useHistory();
 
-  async function login() {
-    const { request_token } = await (
-      await fetch(
-        "https://api.themoviedb.org/3/authentication/token/new?api_key=3cba95d220b545b9996fa206ce1363f6"
-      )
-    ).json();
-
-    const request_token_login = await (
-      await fetch(
-        "https://api.themoviedb.org/3/authentication/token/validate_with_login?api_key=3cba95d220b545b9996fa206ce1363f6",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            username: email,
-            password: password,
-            request_token: request_token,
-          }),
-        }
-      )
-    ).json();
-    if (request_token_login.success === true) {
-      const session = await (
-        await fetch(
-          "https://api.themoviedb.org/3/authentication/session/new?api_key=3cba95d220b545b9996fa206ce1363f6",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              request_token: request_token_login.request_token,
-            }),
-          }
-        )
-      ).json();
-      if (session.success) {
-        history.push("/");
-        console.log("mm");
-        accountAction.login({ session: session.session_id });
-      }
-    }
-  }
   return (
     <div className=" flex justify-center items-center bg-transparent py-10">
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          login();
+          accountAction.login({ userName, password, history });
         }}
         className="p-10 bg-white rounded flex justify-center items-center flex-col shadow-md"
       >
@@ -75,8 +30,8 @@ export default function Login() {
         </svg>
         <p className="mb-5 text-3xl uppercase text-gray-600">Login</p>
         <input
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          value={userName}
+          onChange={(e) => setUserName(e.target.value)}
           name="email"
           className="mb-5 p-3 w-80 focus:border-greenHl rounded border-2 outline-none"
           placeholder="Email"
