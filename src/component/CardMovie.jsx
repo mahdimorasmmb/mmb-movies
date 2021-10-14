@@ -13,7 +13,6 @@ export default function CardMovie({ movie }) {
     (state) => state.profile?.favorite[`${movie.title ? "movie" : "tv"}`]
   );
   const account_id = useSelector((state) => state.profile.profile?.id);
-  console.log(favorite);
   return (
     <div className=" w-auto justify-center   lg:p-5 py-5 px-12 antialiased text-gray-900">
       <img
@@ -32,25 +31,40 @@ export default function CardMovie({ movie }) {
                 ? `${movie.title.substring(0, 22)}...`
                 : movie.title}
             </p>
-            {favorite?.results.length !== 0 ? (
-              favorite.results.find((item) => item.id === movie.id) ? (
-                <StarTwoTone
-                  twoToneColor="yellow"
-                  style={{ color: "yellow" }}
-                  className="text-4xl cursor-pointer"
-                  onClick={() => {
-                    profileAction.setFavorite(
-                      account_id,
-                      media_type,
-                      movie.id,
-                      false
-                    );
-                  }}
-                />
+            {favorite ? (
+              favorite?.results.length !== 0 ? (
+                favorite.results.find((item) => item.id === movie.id) ? (
+                  <StarTwoTone
+                    twoToneColor="yellow"
+                    style={{ color: "yellow" }}
+                    className="text-4xl cursor-pointer"
+                    onClick={() => {
+                      profileAction.setFavorite(
+                        account_id,
+                        media_type,
+                        movie.id,
+                        false
+                      );
+                    }}
+                  />
+                ) : (
+                  <StarOutlined
+                    style={{ color: "yellow" }}
+                    className="text-2xl cursor-pointer"
+                    onClick={() => {
+                      profileAction.setFavorite(
+                        account_id,
+                        media_type,
+                        movie.id,
+                        true
+                      );
+                    }}
+                  />
+                )
               ) : (
                 <StarOutlined
                   style={{ color: "yellow" }}
-                  className="text-2xl cursor-pointer"
+                  className="text-4xl cursor-pointer"
                   onClick={() => {
                     profileAction.setFavorite(
                       account_id,
@@ -62,23 +76,12 @@ export default function CardMovie({ movie }) {
                 />
               )
             ) : (
-              <StarOutlined
-                style={{ color: "yellow" }}
-                className="text-4xl cursor-pointer"
-                onClick={() => {
-                  profileAction.setFavorite(
-                    account_id,
-                    media_type,
-                    movie.id,
-                    true
-                  );
-                }}
-              />
+              ""
             )}
           </div>
           <div className=" flex justify-between">
             <button className="px-1 lg:px-2 text-center capitalize md:font-bold text-xs font-extralight  text-gray-100 bg-greenHl   rounded-lg hover:text-greenHl hover:bg-gray-100">
-              <Link to={`/movie-info/${movie.id}`}>more info...</Link>
+              <Link to={`/${media_type}-info/${movie.id}`}>more info...</Link>
             </button>
             <h2 className="text-yellow-400 font-extrabold text-2xl">
               {movie.vote_average}

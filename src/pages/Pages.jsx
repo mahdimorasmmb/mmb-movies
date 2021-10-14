@@ -4,6 +4,7 @@ import Home from "./Home/Home";
 import Login from "./Login/Login";
 import MovieInfoPage from "./Movie/MovieInfoPage";
 import People from "./People/People";
+import TvInfoPage from "./Tv/TVInfoPage";
 
 export default function Pages() {
   return (
@@ -13,6 +14,9 @@ export default function Pages() {
       </Route>
       <Route path="/movie-info/:id">
         <MovieInfoPage />
+      </Route>
+      <Route path="/tv-info/:id">
+        <TvInfoPage />
       </Route>
       <Route path="/login">
         <Login />

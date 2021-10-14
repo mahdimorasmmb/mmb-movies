@@ -3,11 +3,17 @@ import React from "react";
 import { useParams } from "react-router";
 import imgSrc from "../../helpers/imgSrc";
 import useMovieDB from "../../hooks/useMovieDB";
-import { StarTwoTone } from "@ant-design/icons";
+import { StarTwoTone, StarOutlined } from "@ant-design/icons";
+import profileAction from "../../store/actions/profileAction";
+import { useSelector } from "react-redux";
 
 export default function MovieInfoPage() {
   const { id } = useParams();
   const { data, loading } = useMovieDB(`/movie/${id}`);
+  const media_type = "movie";
+  const account_id = useSelector((state) => state.profile.profile?.id);
+  const favorite = useSelector((state) => state.profile.favorite.movie);
+  console.log(favorite);
   return (
     <div className=" p-4 bg-greenHd w-full  flex flex-col sm:flex-row text-gray-100">
       {/* <!--Banner image--> */}
@@ -37,7 +43,53 @@ export default function MovieInfoPage() {
             page
           </a>
           <h2 className="text-yellow-400 font-extrabold text-2xl">
-            <StarTwoTone twoToneColor="#FBBF24" />
+            {favorite ? (
+              favorite?.results.length !== 0 ? (
+                favorite.results.find((item) => item.id === data?.id) ? (
+                  <StarTwoTone
+                    twoToneColor="yellow"
+                    style={{ color: "yellow" }}
+                    className="text-4xl cursor-pointer"
+                    onClick={() => {
+                      profileAction.setFavorite(
+                        account_id,
+                        media_type,
+                        data.id,
+                        false
+                      );
+                    }}
+                  />
+                ) : (
+                  <StarOutlined
+                    style={{ color: "yellow" }}
+                    className="text-2xl cursor-pointer"
+                    onClick={() => {
+                      profileAction.setFavorite(
+                        account_id,
+                        media_type,
+                        data.id,
+                        true
+                      );
+                    }}
+                  />
+                )
+              ) : (
+                <StarOutlined
+                  style={{ color: "yellow" }}
+                  className="text-4xl cursor-pointer"
+                  onClick={() => {
+                    profileAction.setFavorite(
+                      account_id,
+                      media_type,
+                      data.id,
+                      true
+                    );
+                  }}
+                />
+              )
+            ) : (
+              ""
+            )}
             {data?.vote_average}
           </h2>
           <p className=" font-semibold text-sm">{data?.release_date}</p>
