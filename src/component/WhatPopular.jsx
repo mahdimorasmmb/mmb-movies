@@ -4,8 +4,11 @@ import { MovieOrTv } from "../context/MovieOrTv";
 export default function WhatPopular() {
   const { active, setActive } = useContext(MovieOrTv);
   return (
-    <div className="flex px-5 pt-3 justify-center">
-      <ul className="flex list-none flex-nowrap  bg-gray-200 px-3 py-3 rounded-full text-gray-900 ">
+    <div>
+      <h2 className="text-gray-200 text-3xl mt-8 px-8 font-bold">
+        Popular Movie
+      </h2>
+      {/* <ul className="flex list-none flex-nowrap  bg-gray-200 px-3 py-3 rounded-full text-gray-900 ">
         <li>
           <a
             onClick={() => {
@@ -36,7 +39,7 @@ export default function WhatPopular() {
             TV
           </a>
         </li>
-      </ul>
+      </ul> */}
     </div>
   );
 }

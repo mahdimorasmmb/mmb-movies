@@ -5,11 +5,12 @@ import MovieSwiper from "../MovieSwiper";
 import { MovieOrTv } from "../../context/MovieOrTv";
 
 export default function PopMoviesSlider() {
-  const { data, loading } = useMovieDB(
-    `${useContext(MovieOrTv).active}/popular`
-  );
+  const { data, loading } = useMovieDB(`movie/popular`);
   return (
     <>
+      <h2 className="text-gray-200 mx-6 mt-5 text-3xl  font-bold">
+        Popular Movie
+      </h2>
       <MovieSwiper data={data} loading={loading} />
     </>
   );

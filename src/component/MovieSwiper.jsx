@@ -8,6 +8,11 @@ import CardMovie from "./CardMovie";
 export default function MovieSwiper({ loading, data }) {
   return (
     <Swiper
+      autoplay={{
+        delay: 2000,
+      }}
+      loop
+      pagination={{ dynamicBullets: true }}
       breakpoints={{
         400: {
           slidesPerView: 1,
@@ -18,7 +23,7 @@ export default function MovieSwiper({ loading, data }) {
           spaceBetween: 10,
         },
         1279: {
-          slidesPerView: 3,
+          slidesPerView: 5,
           spaceBetween: 5,
         },
       }}

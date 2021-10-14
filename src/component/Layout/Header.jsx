@@ -71,7 +71,7 @@ const menu = (
 
 export default function Header() {
   const history = useHistory();
-  const profile = useSelector((state) => state.profile);
+  const profile = useSelector((state) => state.profile?.profile);
   console.log(!profile);
   useEffect(() => {
     profileAction.getProfile();
