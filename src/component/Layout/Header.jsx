@@ -92,7 +92,7 @@ export default function Header() {
   );
 
   return (
-    <header className="flex  text-gray-200  bg-greenHl items-center  lg:justify-around  justify-between shadow-3xl px-8  py-2  ">
+    <header className="flex  text-gray-200  bg-greenHl items-center  lg:justify-around  justify-between shadow-3xl px-8    ">
       <Dropdown overlay={itemMene} trigger={["click"]}>
         <div className="  lg:hidden">
           <MenuOutlined style={{ fontSize: 40 }} />
