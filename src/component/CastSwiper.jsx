@@ -1,4 +1,5 @@
 import React from "react";
+import img from "../img/blank-profile.png";
 import useMovieDB from "../../src/hooks/useMovieDB";
 import { Swiper, SwiperSlide } from "swiper/react";
 import imgSrc from "../helpers/imgSrc";
@@ -13,12 +14,12 @@ export default function CastSwiper({ castes }) {
       pagination={{ dynamicBullets: true }}
       breakpoints={{
         400: {
-          slidesPerView: 2,
+          slidesPerView: 1,
           spaceBetween: 5,
         },
         768: {
-          slidesPerView: 3,
-          spaceBetween: 10,
+          slidesPerView: 1,
+          spaceBetween: 5,
         },
         1279: {
           slidesPerView: 5,
@@ -36,7 +37,9 @@ export default function CastSwiper({ castes }) {
             <div className="flex items-center space-x-6 mb-4">
               <img
                 className="h-28 w-28 object-cover object-center rounded-full"
-                src={imgSrc(item.profile_path, "w185")}
+                src={
+                  item.profile_path ? imgSrc(item.profile_path, "w185") : img
+                }
                 alt="photo"
               />
               <div>

@@ -9,6 +9,8 @@ import { Menu, Dropdown } from "antd";
 import { useSelector } from "react-redux";
 import profileAction from "../../store/actions/profileAction";
 import CastSwiper from "../../component/CastSwiper";
+import YoutubeEmbed from "../../component/YoutubeEmbed";
+import ImageInfoMovie from "../../component/ImageInfoMovie";
 
 export default function MovieInfoPage() {
   const { id } = useParams();
@@ -17,11 +19,13 @@ export default function MovieInfoPage() {
   const account_id = useSelector((state) => state.profile.profile?.id);
   const favorite = useSelector((state) => state.profile.favorite.movie);
   const castes = useMovieDB(`/movie/${id}/credits`);
+  const video = useMovieDB(`movie/${id}/videos`);
+  const image = useMovieDB(`movie/${id}/images`);
 
+  console.log(image);
   return (
     <>
-      <div className=" px-4  bg-transparent w-full justify-center  flex flex-col sm:flex-row text-gray-100">
-        {/* <!--Banner image--> */}
+      <div className="  px-4 z-50     w-full justify-center  flex flex-col sm:flex-row text-gray-100">
         <div className="sm:w-1/2 max-h-100 w-full py-10  p-2">
           <img
             className="rounded-lg  mx-auto h-full shadow-3xl  object-cover object-center"
@@ -120,8 +124,16 @@ export default function MovieInfoPage() {
             Production Companies
           </p>
         </div>
-        <div className="cast px-5 py-8">
+        <div className="cast px-5 py-8 hidden">
           <CastSwiper castes={castes} />
+        </div>
+        <div className=" hidden flex justify-center items-center rounded-lg flex-col ">
+          {video.data?.results.map((item) => (
+            <YoutubeEmbed src={item.key} />
+          ))}
+        </div>
+        <div className=" px-10">
+          <ImageInfoMovie images={image} />
         </div>
       </div>
     </>
