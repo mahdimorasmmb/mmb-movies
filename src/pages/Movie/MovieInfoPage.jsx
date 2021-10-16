@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router";
 import imgSrc from "../../helpers/imgSrc";
 import useMovieDB from "../../hooks/useMovieDB";
@@ -13,6 +13,7 @@ import YoutubeEmbed from "../../component/YoutubeEmbed";
 import ImageInfoMovie from "../../component/ImageInfoMovie";
 
 export default function MovieInfoPage() {
+  const [activeTab, setActiveTab] = useState(1);
   const { id } = useParams();
   const { data, loading } = useMovieDB(`/movie/${id}`);
   const media_type = "movie";
@@ -111,28 +112,69 @@ export default function MovieInfoPage() {
       </div>
       <div className=" w-full border-t-2  border-gray-400 ">
         <div className=" w-full pt-4 px-6  bg-greenHl flex ">
-          <p className="text-lg  font-bold text-gray-200 pl-2 pr-8  hover:text-gray-200 cursor-pointer border-l-2 border-greenHd bg">
+          <p
+            onClick={() => {
+              setActiveTab(1);
+            }}
+            className={` ${
+              activeTab === 1
+                ? "text-gray-200 border-l-4 border-gray-200"
+                : "text-gray-500"
+            }
+             text-lg  font-bold   pl-2 pr-8  hover:text-gray-200 cursor-pointer  bg $`}
+          >
             Cast
           </p>
-          <p className="text-lg font-bold text-gray-500 pl-2 pr-8 hover:text-gray-200 cursor-pointer">
+          <p
+            onClick={() => {
+              setActiveTab(2);
+            }}
+            className={`text-lg font-bold  pl-2 pr-8 hover:text-gray-200 cursor-pointer ${
+              activeTab === 2
+                ? "text-gray-200 border-l-4 border-gray-200"
+                : "text-gray-500"
+            }`}
+          >
             Videos
           </p>
-          <p className="text-lg font-bold text-gray-500 pl-2 pr-8 hover:text-gray-200 cursor-pointer">
+          <p
+            onClick={() => {
+              setActiveTab(3);
+            }}
+            className={`"text-lg font-bold  pl-2 pr-8 hover:text-gray-200 cursor-pointer ${
+              activeTab === 3
+                ? "text-gray-200 border-l-4 border-gray-200"
+                : "text-gray-500"
+            }`}
+          >
             Images
           </p>
-          <p className="text-lg font-bold text-gray-500 pl-2 pr-8 hover:text-gray-200 cursor-pointer">
+          <p
+            onClick={() => {
+              setActiveTab(4);
+            }}
+            className={`text-lg font-bold  pl-2 pr-8 hover:text-gray-200 cursor-pointer ${
+              activeTab === 4
+                ? "text-gray-200 border-l-4 border-gray-200"
+                : "text-gray-500"
+            }`}
+          >
             Production Companies
           </p>
         </div>
-        <div className="cast px-5 py-8 hidden">
+        <div className={`${activeTab === 1 ? "block" : "hidden"}   px-5 py-8 `}>
           <CastSwiper castes={castes} />
         </div>
-        <div className="  flex justify-center items-center rounded-lg flex-col ">
+        <div
+          className={`   justify-center items-center rounded-lg ${
+            activeTab === 2 ? "flex flex-col" : "hidden"
+          }`}
+        >
           {video.data?.results.map((item) => (
             <YoutubeEmbed src={item.key} />
           ))}
         </div>
-        <div className=" hidden px-10">
+        <div className={`  px-10 ${activeTab === 3 ? "block" : "hidden"}`}>
           <ImageInfoMovie images={image} />
         </div>
       </div>
