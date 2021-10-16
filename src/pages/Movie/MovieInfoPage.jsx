@@ -127,12 +127,12 @@ export default function MovieInfoPage() {
         <div className="cast px-5 py-8 hidden">
           <CastSwiper castes={castes} />
         </div>
-        <div className=" hidden flex justify-center items-center rounded-lg flex-col ">
+        <div className="  flex justify-center items-center rounded-lg flex-col ">
           {video.data?.results.map((item) => (
             <YoutubeEmbed src={item.key} />
           ))}
         </div>
-        <div className=" px-10">
+        <div className=" hidden px-10">
           <ImageInfoMovie images={image} />
         </div>
       </div>
