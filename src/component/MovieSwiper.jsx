@@ -23,7 +23,7 @@ export default function MovieSwiper({ loading, data }) {
           spaceBetween: 10,
         },
         1279: {
-          slidesPerView: 5,
+          slidesPerView: 4,
           spaceBetween: 5,
         },
       }}

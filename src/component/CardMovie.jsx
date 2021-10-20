@@ -19,73 +19,21 @@ export default function CardMovie({ movie }) {
         src={imgSrc(movie.poster_path, "w780")}
         className=" w-full h-auto object-contain  rounded-lg shadow-md"
       />
-      <div className="relative text px-4 -mt-3">
-        <div className="bg-greenHd p-3 rounded-lg  shadow-lg">
-          <div className="flex justify-between">
-            <p className="md:text-sm text-xs text-center font-bold  text-gray-100">
+      <div className="relative text px-4 -mt-4">
+        <div className="bg-greenHl p-3 rounded-lg flex flex-col shadow-lg">
+          <div className="flex justify-between items-center">
+            <p className="md:text-2xl text-xl text-center font-bold   text-gray-100">
               {movie.name
-                ? movie.name.length > 23
-                  ? `${movie.name.substring(0, 24)}...`
+                ? movie.name.length > 15
+                  ? `${movie.name.substring(0, 15)}...`
                   : movie.name
-                : movie.title.length > 22
-                ? `${movie.title.substring(0, 22)}...`
+                : movie.title.length > 15
+                ? `${movie.title.substring(0, 15)}...`
                 : movie.title}
             </p>
-            {favorite ? (
-              favorite?.results.length !== 0 ? (
-                favorite.results.find((item) => item.id === movie.id) ? (
-                  <StarTwoTone
-                    twoToneColor="yellow"
-                    style={{ color: "yellow" }}
-                    className="text-4xl cursor-pointer"
-                    onClick={() => {
-                      profileAction.setFavorite(
-                        account_id,
-                        media_type,
-                        movie.id,
-                        false
-                      );
-                    }}
-                  />
-                ) : (
-                  <StarOutlined
-                    style={{ color: "yellow" }}
-                    className="text-2xl cursor-pointer"
-                    onClick={() => {
-                      profileAction.setFavorite(
-                        account_id,
-                        media_type,
-                        movie.id,
-                        true
-                      );
-                    }}
-                  />
-                )
-              ) : (
-                <StarOutlined
-                  style={{ color: "yellow" }}
-                  className="text-4xl cursor-pointer"
-                  onClick={() => {
-                    profileAction.setFavorite(
-                      account_id,
-                      media_type,
-                      movie.id,
-                      true
-                    );
-                  }}
-                />
-              )
-            ) : (
-              ""
-            )}
-          </div>
-          <div className=" flex justify-between">
-            <button className="px-1 lg:px-2 text-center capitalize md:font-bold text-xs font-extralight  text-gray-100 bg-greenHl   rounded-lg hover:text-greenHl hover:bg-gray-100">
-              <Link to={`/${media_type}-info/${movie.id}`}>more info...</Link>
-            </button>
-            <h2 className="text-yellow-400 font-extrabold text-2xl">
-              {movie.vote_average}
-            </h2>
+            <span className="bg-greenHd border-8 border-solid border-greenHl flex justify-center items-center rounded-full w-20 h-20 text-2xl mt-3 text-yellow-400 font-extrabold">
+              {movie?.vote_average * 10} <span>%</span>
+            </span>
           </div>
         </div>
       </div>
