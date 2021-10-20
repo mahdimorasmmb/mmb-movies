@@ -14,15 +14,15 @@ export default function ImageInfoMovie({ images }) {
       breakpoints={{
         400: {
           slidesPerView: 3,
-          spaceBetween: 10,
+          spaceBetween: 4,
         },
         768: {
-          slidesPerView: 5,
-          spaceBetween: 10,
+          slidesPerView: 3,
+          spaceBetween: 4,
         },
         1279: {
           slidesPerView: 4,
-          spaceBetween: 10,
+          spaceBetween: 4,
         },
       }}
       onSlideChange={() => console.log("slide change")}
@@ -34,7 +34,7 @@ export default function ImageInfoMovie({ images }) {
         data?.backdrops.map((image) => (
           <SwiperSlide>
             <img
-              className="py-7 h-96 rounded-3xl "
+              className="py-7 w-1/3 rounded-3xl "
               src={imgSrc(image.file_path, "w500")}
             />
           </SwiperSlide>

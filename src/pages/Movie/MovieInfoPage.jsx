@@ -4,13 +4,12 @@ import imgSrc from "../../helpers/imgSrc";
 import useMovieDB from "../../hooks/useMovieDB";
 import { StarTwoTone, StarOutlined } from "@ant-design/icons";
 
-import { Menu, Dropdown } from "antd";
-
 import { useSelector } from "react-redux";
 import profileAction from "../../store/actions/profileAction";
 import CastSwiper from "../../component/CastSwiper";
 import YoutubeEmbed from "../../component/YoutubeEmbed";
 import ImageInfoMovie from "../../component/ImageInfoMovie";
+import ReviewsPage from "../../component/ReviewsPage";
 
 export default function MovieInfoPage() {
   const [activeTab, setActiveTab] = useState(1);
@@ -22,6 +21,7 @@ export default function MovieInfoPage() {
   const castes = useMovieDB(`/movie/${id}/credits`);
   const video = useMovieDB(`movie/${id}/videos`);
   const image = useMovieDB(`movie/${id}/images`);
+  const reviews = useMovieDB(`movie/${id}/reviews`);
 
   console.log(image);
   return (
@@ -159,7 +159,7 @@ export default function MovieInfoPage() {
                 : "text-gray-500"
             }`}
           >
-            Production Companies
+            Reviews
           </p>
         </div>
         <div className={`${activeTab === 1 ? "block" : "hidden"}   px-5 py-8 `}>
@@ -174,8 +174,26 @@ export default function MovieInfoPage() {
             <YoutubeEmbed src={item.key} />
           ))}
         </div>
-        <div className={`  px-10 ${activeTab === 3 ? "block" : "hidden"}`}>
-          <ImageInfoMovie images={image} />
+        <div
+          className={` grid grid-cols-3    px-10 ${
+            activeTab === 3 ? "block" : "hidden"
+          }`}
+        >
+          {image?.data?.backdrops.map((img) => (
+            <img
+              className="py-7 px-4 rounded-3xl "
+              src={imgSrc(img.file_path, "w500")}
+            />
+          ))}
+        </div>
+        <div
+          className={` py-4    px-10 ${
+            activeTab === 4 ? "block" : "hidden"
+          } w-full grid grid-cols-1 md:grid-cols-1 gap-6`}
+        >
+          {reviews?.data?.results.map((item) => (
+            <ReviewsPage key={item.id} info={item} />
+          ))}
         </div>
       </div>
     </>

@@ -18,7 +18,7 @@ export default function CastSwiper({ castes }) {
           spaceBetween: 5,
         },
         768: {
-          slidesPerView: 1,
+          slidesPerView: 5,
           spaceBetween: 5,
         },
         1279: {
