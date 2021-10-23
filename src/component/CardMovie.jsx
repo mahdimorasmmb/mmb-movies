@@ -15,20 +15,28 @@ export default function CardMovie({ movie }) {
   const account_id = useSelector((state) => state.profile.profile?.id);
   return (
     <div className=" w-auto justify-center   lg:p-5 py-5 px-12 antialiased text-gray-900">
-      <img
-        src={imgSrc(movie.poster_path, "w780")}
-        className=" w-full h-auto object-contain  rounded-lg shadow-md"
-      />
-      <div className="relative text px-4 -mt-4">
-        <div className="bg-greenHl p-3 rounded-lg flex flex-col shadow-lg">
+      <Link
+        to={
+          media_type === "movie"
+            ? `movie-info/${movie.id}`
+            : `tv-info/${movie.id}`
+        }
+      >
+        <img
+          src={imgSrc(movie.poster_path, "w780")}
+          className="hover:opacity-70 cursor-pointer translate-x-1 w-full h-auto object-contain  rounded-lg shadow-md"
+        />
+      </Link>
+      <div className="relative text -mt-4">
+        <div className="bg-greenHl p-3 rounded-2xl flex flex-col shadow-lg">
           <div className="flex justify-between items-center">
             <p className="md:text-2xl text-xl text-center font-bold   text-gray-100">
               {movie.name
-                ? movie.name.length > 15
-                  ? `${movie.name.substring(0, 15)}...`
+                ? movie.name.length > 18
+                  ? `${movie.name.substring(0, 18)}...`
                   : movie.name
-                : movie.title.length > 15
-                ? `${movie.title.substring(0, 15)}...`
+                : movie.title.length > 18
+                ? `${movie.title.substring(0, 18)}...`
                 : movie.title}
             </p>
             <span className="bg-greenHd border-8 border-solid border-greenHl flex justify-center items-center rounded-full w-20 h-20 text-2xl mt-3 text-yellow-400 font-extrabold">

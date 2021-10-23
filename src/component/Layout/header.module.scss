@@ -1,0 +1,11 @@
+.menu {
+  background-color: #051421;
+}
+
+.item {
+  color: rgb(180, 178, 176);
+  &:hover {
+    background-color: #042727;
+    color: rgb(180, 178, 176);
+  }
+}
