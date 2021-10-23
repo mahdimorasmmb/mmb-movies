@@ -6,7 +6,12 @@ import CelebritiesIcon from "../Icon/CelebritiesIcon";
 import NewsIcon from "../Icon/NewsIcon";
 import CommunityIcon from "../Icon/CommunityIcon";
 import SearchIcon from "@mui/icons-material/Search";
-import { MenuOutlined } from "@ant-design/icons";
+import {
+  AppstoreOutlined,
+  MailOutlined,
+  MenuOutlined,
+  SettingOutlined,
+} from "@ant-design/icons";
 
 import { Menu, Dropdown } from "antd";
 import { Link } from "react-router-dom";
@@ -18,60 +23,7 @@ import MyMenu from "../MyMenu";
 import LiveTvIcon from "@mui/icons-material/LiveTv";
 
 import classes from "./header.module.scss";
-
-const itemMene = (
-  <Menu theme="dark">
-    <Menu.Item>
-      <Link to="/">Home</Link>
-    </Menu.Item>
-    <Menu.Item>Movie</Menu.Item>
-    <Menu.Item>Celebrities</Menu.Item>
-    <Menu.Item>News</Menu.Item>
-    <Menu.Item>Community</Menu.Item>
-    <Menu.Item>Search</Menu.Item>
-  </Menu>
-);
-
-const menu = (
-  <Menu theme="dark">
-    <Menu.Item>
-      <Dropdown
-        overlay={
-          <Menu className="absolute left-24 text-lg">
-            <Menu.Item></Menu.Item>
-          </Menu>
-        }
-        placement="bottomLeft"
-      >
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          href="https://www.antgroup.com"
-        >
-          1st menu item
-        </a>
-      </Dropdown>
-    </Menu.Item>
-    <Menu.Item>
-      <a
-        target="_blank"
-        rel="noopener noreferrer"
-        href="https://www.aliyun.com"
-      >
-        2nd menu item
-      </a>
-    </Menu.Item>
-    <Menu.Item>
-      <a
-        target="_blank"
-        rel="noopener noreferrer"
-        href="https://www.luohanacademy.com"
-      >
-        3rd menu item
-      </a>
-    </Menu.Item>
-  </Menu>
-);
+import SubMenu from "antd/lib/menu/SubMenu";
 
 export default function Header() {
   const history = useHistory();
@@ -124,6 +76,33 @@ export default function Header() {
           Logout
         </button>
       </Menu.Item>
+    </Menu>
+  );
+  const itemMene = (
+    <Menu mode="inline" className={classes.menu}>
+      <SubMenu key="sub1" icon={<MovieIcon />} title="MOVIE">
+        <Menu.Item className={classes.item}>
+          <Link to="/popular-movie">Popular Movie</Link>
+        </Menu.Item>
+        <Menu.Item className={classes.item}>
+          <Link to="/top-rated-movie">Top Rated</Link>{" "}
+        </Menu.Item>
+      </SubMenu>
+      <SubMenu key="sub2" icon={<LiveTvIcon />} title="TV">
+        <Menu.Item className={classes.item}>
+          <Link to="/popular-tv">Popular TV</Link>{" "}
+        </Menu.Item>
+        <Menu.Item className={classes.item}>
+          <Link to="/top-rated-tv">Top Rated TV</Link>{" "}
+        </Menu.Item>
+        <Menu.Item className={classes.item}>
+          <Link to="/airing-today-tv">Airing Today</Link>{" "}
+        </Menu.Item>
+        <Menu.Item className={classes.item}>
+          <Link to="/on-the-air-tv">On The Air</Link>{" "}
+        </Menu.Item>
+      </SubMenu>
+      <SubMenu key="sub4" icon={<SearchIcon />} title="SEARCH"></SubMenu>
     </Menu>
   );
 
@@ -185,24 +164,18 @@ export default function Header() {
               </p>
             </div>
           </Dropdown>
-          <Dropdown
-            className="hidden lg:block"
-            overlay={menu}
-            placement="bottomLeft"
-            arrow
-          >
-            <div className="group flex flex-col cursor-pointer w-24 text-center ">
-              <SearchIcon
-                className={`mx-auto group-hover:animate-bounce `}
-                sx={{ fontSize: 30 }}
-              />
-              <p
-                className={`uppercase let tracking-widest mx-auto text-xs opacity-0  group-hover:opacity-100 `}
-              >
-                Search
-              </p>
-            </div>
-          </Dropdown>
+
+          <div className=" hidden lg:flex group  flex-col cursor-pointer w-24 text-center ">
+            <SearchIcon
+              className={`mx-auto group-hover:animate-bounce `}
+              sx={{ fontSize: 30 }}
+            />
+            <p
+              className={`uppercase let tracking-widest mx-auto text-xs opacity-0  group-hover:opacity-100 `}
+            >
+              Search
+            </p>
+          </div>
         </div>
         {/* <div
           className={`text-white  group  flex-col cursor-pointer w-24 hidden lg:flex `}

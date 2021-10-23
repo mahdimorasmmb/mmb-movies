@@ -22,7 +22,7 @@ export default function TvOnTheAir() {
           <h1>is loading....</h1>
         ) : (
           data?.results.map((movie) => (
-            <Grid item xs={3}>
+            <Grid item xs={12} md={4} lg={3}>
               <CardMovie movie={movie} />
             </Grid>
           ))
