@@ -8,12 +8,13 @@ import CommunityIcon from "../Icon/CommunityIcon";
 import SearchIcon from "@mui/icons-material/Search";
 import {
   AppstoreOutlined,
+  CloseOutlined,
   MailOutlined,
   MenuOutlined,
   SettingOutlined,
 } from "@ant-design/icons";
 
-import { Menu, Dropdown } from "antd";
+import { Menu, Dropdown, Button, Modal } from "antd";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import profileAction from "../../store/actions/profileAction";
@@ -24,8 +25,11 @@ import LiveTvIcon from "@mui/icons-material/LiveTv";
 
 import classes from "./header.module.scss";
 import SubMenu from "antd/lib/menu/SubMenu";
+import searchAction from "../../store/actions/searchAction";
 
 export default function Header() {
+  const [searchInput, setSearchInput] = useState("");
+  const [isModalVisible, setIsModalVisible] = useState(false);
   const history = useHistory();
   const profile = useSelector((state) => state.profile?.profile);
   useEffect(() => {
@@ -106,6 +110,23 @@ export default function Header() {
     </Menu>
   );
 
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+
+  const handleOk = () => {
+    setIsModalVisible(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
+
+  const handleSearch = () => {
+    console.log(searchInput);
+    searchAction.searchMovie(searchInput, history, handleCancel);
+  };
+
   return (
     <header className="flex  text-gray-200  bg-greenHl items-center  lg:justify-around  justify-between shadow-3xl px-8    ">
       <Dropdown overlay={itemMene} trigger={["click"]}>
@@ -165,7 +186,10 @@ export default function Header() {
             </div>
           </Dropdown>
 
-          <div className=" hidden lg:flex group  flex-col cursor-pointer w-24 text-center ">
+          <div
+            onClick={setIsModalVisible}
+            className=" hidden lg:flex group  flex-col cursor-pointer w-24 text-center "
+          >
             <SearchIcon
               className={`mx-auto group-hover:animate-bounce `}
               sx={{ fontSize: 30 }}
@@ -177,6 +201,40 @@ export default function Header() {
             </p>
           </div>
         </div>
+        <Modal
+          theme="dark"
+          bodyStyle={{ background: "#042727" }}
+          visible={isModalVisible}
+          onOk={handleOk}
+          onCancel={handleCancel}
+          closable={false}
+          footer={null}
+        >
+          <div className="container flex mx-auto">
+            <div className="flex border-2 rounded">
+              <button
+                onClick={handleSearch}
+                className="flex items-center justify-center px-4 border-r"
+              >
+                <svg
+                  className="w-6 h-6 text-gray-200"
+                  fill="currentColor"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M16.32 14.9l5.39 5.4a1 1 0 0 1-1.42 1.4l-5.38-5.38a8 8 0 1 1 1.41-1.41zM10 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12z"></path>
+                </svg>
+              </button>
+              <input
+                value={searchInput}
+                onChange={(e) => setSearchInput(e.target.value)}
+                type="text"
+                className="px-4 py-2 w-80 text-gray-900"
+                placeholder="Search..."
+              />
+            </div>
+          </div>
+        </Modal>
         {/* <div
           className={`text-white  group  flex-col cursor-pointer w-24 hidden lg:flex `}
         >
@@ -248,9 +306,9 @@ export default function Header() {
           >
             login
           </Link>
-          {/* <button className=" inline-block  px-3 py-2 text-sm bg-gray-200 text-greenHd rounded-lg font-semibold uppercase lg:w-auto hover:text-gray-200 hover:bg-greenHd">
+          <button className=" inline-block  px-3 py-2 text-sm bg-gray-200 text-greenHd rounded-lg font-semibold uppercase lg:w-auto hover:text-gray-200 hover:bg-greenHd">
             sign in
-          </button> */}
+          </button>
         </div>
       )}
     </header>

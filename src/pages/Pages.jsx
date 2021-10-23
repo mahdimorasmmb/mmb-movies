@@ -5,7 +5,9 @@ import Login from "./Login/Login";
 import MovieInfoPage from "./Movie/MovieInfoPage";
 import PopularMoviePage from "./Movie/PopularMoviePage";
 import TopRatedMoviePage from "./Movie/TopRatedMoviePage";
-import People from "./People/People";
+
+import SearchMoviePage from "./SearchMoviePage";
+
 import TvAiringToday from "./Tv/TvAiringTodayPage";
 import TvInfoPage from "./Tv/TVInfoPage";
 import TvOnTheAir from "./Tv/TvOnTheAirPage";
@@ -44,6 +46,9 @@ export default function Pages() {
       </Route>
       <Route path="/on-the-air-tv">
         <TvOnTheAir />
+      </Route>
+      <Route path="/search">
+        <SearchMoviePage />
       </Route>
     </Switch>
   );
