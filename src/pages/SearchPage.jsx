@@ -15,10 +15,8 @@ export default function SearchPage() {
   }, [search]);
   const movie = useSearch(searchInput);
 
-  console.log(searchInput);
-
   const tvShow = useSearch(searchInput, "tv");
-  console.log(tvShow);
+  console.log();
   const people = useSearch(searchInput, "person");
 
   const company = useSearch(searchInput, "company");
@@ -26,7 +24,7 @@ export default function SearchPage() {
   const collection = useSearch(searchInput, "collection");
 
   const keyword = useSearch(searchInput, "keyword");
-
+  console.log(keyword);
   return (
     <div className="flex flex-col">
       <div className="flex items-center flex-col md:flex-row ">
@@ -80,15 +78,15 @@ export default function SearchPage() {
                   {people?.data?.results && people.data.total_results}
                 </li>
                 <li className="bg-gray-200 hover:text-gray-200 py-3  px-4 justify-between hover:bg-greenHd rounded-sm   flex">
-                  <a onClick={() => setShow(3)}>Companies:</a>{" "}
-                  {people?.data?.results && people.data.total_results}
+                  <a onClick={() => setShow(4)}>Companies:</a>{" "}
+                  {company?.data?.results && company.data.total_results}
                 </li>
                 <li className="bg-gray-200 hover:text-gray-200 py-3  px-4 justify-between hover:bg-greenHd  rounded-sm flex">
-                  <a onClick={() => setShow(4)}>Collections:</a>{" "}
+                  <a onClick={() => setShow(5)}>Collections:</a>{" "}
                   {collection?.data?.results && collection.data.total_results}
                 </li>
                 <li className="bg-gray-200 hover:text-gray-200 py-3  px-4 justify-between hover:bg-greenHd rounded-xl flex">
-                  <a onClick={() => setShow(5)}>Keywords:</a>{" "}
+                  <a onClick={() => setShow(6)}>Keywords:</a>{" "}
                   {keyword?.data?.results && keyword.data.total_results}
                 </li>
               </ul>
@@ -160,6 +158,75 @@ export default function SearchPage() {
                   <div className=" flex flex-col mx-2  mb-3 text-gray-200 justify-center items-center ">
                     <h2 className="text-gray-200 text-xl"> {item.name} </h2>
                     <p>{item.known_for_department}</p>
+                  </div>
+                </div>
+              ))
+            )
+          ) : (
+            ""
+          )}
+          {show === 4 ? (
+            company.data === "null" || company?.data?.error ? (
+              <h1>not</h1>
+            ) : (
+              company?.data?.results?.map((item) => (
+                <div className=" h-40 flex flex-row my-4 rounded-2xl mx-2  bg-greenHd">
+                  <div>
+                    <img
+                      src={imgSrc(item.logo_path, "w154")}
+                      className="h-full  rounded-2xl"
+                      alt
+                    />
+                  </div>
+                  <div className=" flex flex-col mx-2  mb-3 text-gray-200 justify-center items-center ">
+                    <h2 className="text-gray-200 text-xl"> {item.name} </h2>
+                    <p>{item.origin_country}</p>
+                  </div>
+                </div>
+              ))
+            )
+          ) : (
+            ""
+          )}
+          {show === 5 ? (
+            collection.data === "null" || collection?.data?.error ? (
+              <h1>not</h1>
+            ) : (
+              collection?.data?.results?.map((item) => (
+                <div className=" h-40 flex flex-row my-4 rounded-2xl mx-2  bg-greenHd">
+                  <div>
+                    <img
+                      src={imgSrc(item.poster_path, "w154")}
+                      className="h-full  rounded-2xl"
+                      alt
+                    />
+                  </div>
+                  <div className=" flex flex-col mx-2  mb-3 text-gray-200 justify-center items-center ">
+                    <h2 className="text-gray-200 text-xl"> {item.name} </h2>
+                    <p>{item.original_name}</p>
+                  </div>
+                </div>
+              ))
+            )
+          ) : (
+            ""
+          )}
+          {show === 6 ? (
+            keyword.data === "null" || keyword?.data?.error ? (
+              <h1>not</h1>
+            ) : (
+              keyword?.data?.results?.map((item) => (
+                <div className=" h-40 flex flex-row my-4 rounded-2xl mx-2  bg-greenHd">
+                  <div>
+                    {/* <img
+                      src={imgSrc(item.poster_path, "w154")}
+                      className="h-full  rounded-2xl"
+                      alt
+                    /> */}
+                  </div>
+                  <div className=" flex flex-col mx-2  mb-3 text-gray-200 justify-center items-center ">
+                    <h2 className="text-gray-200 text-xl"> {item.name} </h2>
+                    {/* <p>{item.first_air_date}</p> */}
                   </div>
                 </div>
               ))
