@@ -4,18 +4,24 @@ import { SEARCH } from "../constant/constant";
 import searchReducer from "../reducer/searchReducer";
 import { store } from "../store";
 
-function searchMovie(options, history, handleCancel) {
+function searchHeader(options, history, handleCancel) {
   return async (dispatch) => {
-    const data = await searchMovieServices(options);
-    dispatch({ type: SEARCH, payload: data });
+    dispatch({ type: SEARCH, payload: options });
     history.push("/search");
+    console.log("header");
     handleCancel();
+  };
+}
+function searchPage(options) {
+  return async (dispatch) => {
+    dispatch({ type: SEARCH, payload: options });
   };
 }
 
 const searchAction = bindActionCreators(
   {
-    searchMovie,
+    searchHeader,
+    searchPage,
   },
   store.dispatch
 );

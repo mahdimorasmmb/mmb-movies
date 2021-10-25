@@ -124,7 +124,7 @@ export default function Header() {
 
   const handleSearch = () => {
     console.log(searchInput);
-    searchAction.searchMovie(searchInput, history, handleCancel);
+    searchAction.searchHeader(searchInput, history, handleCancel);
   };
 
   return (
@@ -229,7 +229,7 @@ export default function Header() {
                 value={searchInput}
                 onChange={(e) => setSearchInput(e.target.value)}
                 type="text"
-                className="px-4 py-2 w-80 text-gray-900"
+                className="px-4 py-2 w-80 text-xl text-gray-900"
                 placeholder="Search..."
               />
             </div>
