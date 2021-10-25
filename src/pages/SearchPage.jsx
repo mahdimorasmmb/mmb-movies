@@ -96,64 +96,76 @@ export default function SearchPage() {
           </div>
         </div>
         <div className="flex flex-col w-full">
-          {show === 1 && (tvShow.data === "null" || tvShow?.data?.error) ? (
-            <h1>not</h1>
+          {show === 1 ? (
+            tvShow.data === "null" || tvShow?.data?.error ? (
+              <h1>not</h1>
+            ) : (
+              tvShow?.data?.results?.map((item) => (
+                <div className=" h-40 flex flex-row my-4 rounded-2xl mx-2  bg-greenHd">
+                  <div>
+                    <img
+                      src={imgSrc(item.poster_path, "w154")}
+                      className="h-full  rounded-2xl"
+                      alt
+                    />
+                  </div>
+                  <div className=" flex flex-col mx-2  mb-3 text-gray-200 justify-center items-center ">
+                    <h2 className="text-gray-200 text-xl"> {item.name} </h2>
+                    <p>{item.first_air_date}</p>
+                  </div>
+                </div>
+              ))
+            )
           ) : (
-            tvShow?.data?.results?.map((item) => (
-              <div className=" h-40 flex flex-row my-4 rounded-2xl mx-2  bg-greenHd">
-                <div>
-                  <img
-                    src={imgSrc(item.poster_path, "w154")}
-                    className="h-full  rounded-2xl"
-                    alt
-                  />
-                </div>
-                <div className=" flex flex-col mx-2  mb-3 text-gray-200 justify-center items-center ">
-                  <h2 className="text-gray-200 text-xl"> {item.name} </h2>
-                  <p>{item.first_air_date}</p>
-                </div>
-              </div>
-            ))
+            ""
           )}
 
-          {show === 2 && (movie.data === "null" || movie.data.error) ? (
-            <h1>not</h1>
+          {show === 2 ? (
+            movie.data === "null" || movie.data.error ? (
+              <h1>not</h1>
+            ) : (
+              movie?.data?.results?.map((item) => (
+                <div className=" h-40 flex flex-row my-4 rounded-2xl mx-2  bg-greenHd">
+                  <div>
+                    <img
+                      src={imgSrc(item.poster_path, "w154")}
+                      className="h-full  rounded-2xl"
+                      alt
+                    />
+                  </div>
+                  <div className=" flex flex-col mx-2  mb-3 text-gray-200 justify-center items-center ">
+                    <h2 className="text-gray-200 text-xl"> {item.title} </h2>
+                    <p>{item.release_date}</p>
+                  </div>
+                </div>
+              ))
+            )
           ) : (
-            movie?.data?.results?.map((item) => (
-              <div className=" h-40 flex flex-row my-4 rounded-2xl mx-2  bg-greenHd">
-                <div>
-                  <img
-                    src={imgSrc(item.poster_path, "w154")}
-                    className="h-full  rounded-2xl"
-                    alt
-                  />
-                </div>
-                <div className=" flex flex-col mx-2  mb-3 text-gray-200 justify-center items-center ">
-                  <h2 className="text-gray-200 text-xl"> {item.title} </h2>
-                  <p>{item.release_date}</p>
-                </div>
-              </div>
-            ))
+            ""
           )}
 
-          {show === 3 && (people.data === "null" || people.data.error) ? (
-            <h1>not</h1>
+          {show === 3 ? (
+            people.data === "null" || people.data.error ? (
+              <h1>not</h1>
+            ) : (
+              people?.data?.results?.map((item) => (
+                <div className=" h-40 flex flex-row my-4 rounded-2xl mx-2  bg-greenHd">
+                  <div>
+                    <img
+                      src={imgSrc(item.profile_path, "w154")}
+                      className="h-full  rounded-2xl"
+                      alt
+                    />
+                  </div>
+                  <div className=" flex flex-col mx-2  mb-3 text-gray-200 justify-center items-center ">
+                    <h2 className="text-gray-200 text-xl"> {item.name} </h2>
+                    <p>{item.known_for_department}</p>
+                  </div>
+                </div>
+              ))
+            )
           ) : (
-            people?.data?.results?.map((item) => (
-              <div className=" h-40 flex flex-row my-4 rounded-2xl mx-2  bg-greenHd">
-                <div>
-                  <img
-                    src={imgSrc(item.profile_path, "w154")}
-                    className="h-full  rounded-2xl"
-                    alt
-                  />
-                </div>
-                <div className=" flex flex-col mx-2  mb-3 text-gray-200 justify-center items-center ">
-                  <h2 className="text-gray-200 text-xl"> {item.name} </h2>
-                  <p>{item.known_for_department}</p>
-                </div>
-              </div>
-            ))
+            ""
           )}
         </div>
       </div>
