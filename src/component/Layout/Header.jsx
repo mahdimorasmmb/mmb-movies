@@ -106,7 +106,12 @@ export default function Header() {
           <Link to="/on-the-air-tv">On The Air</Link>{" "}
         </Menu.Item>
       </SubMenu>
-      <SubMenu key="sub4" icon={<SearchIcon />} title="SEARCH"></SubMenu>
+      <Menu.Item
+        onClick={setIsModalVisible}
+        key="sub4"
+        icon={<SearchIcon />}
+        title="SEARCH"
+      ></Menu.Item>
     </Menu>
   );
 
