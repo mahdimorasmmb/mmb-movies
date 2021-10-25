@@ -29,7 +29,7 @@ export default function SearchPage() {
 
   return (
     <div className="flex flex-col">
-      <div className="flex items-center ">
+      <div className="flex items-center flex-col md:flex-row ">
         <h2 className="text-3xl  mx-6 mt-5 font-bold text-gray-200">
           Search Page
         </h2>
@@ -59,8 +59,8 @@ export default function SearchPage() {
           />
         </div>
       </div>
-      <div className="flex">
-        <div className="w-1/4">
+      <div className="flex flex-col items-center md:items-start md:flex-row ">
+        <div className="  md:w-1/4 w-full">
           <h2 className="bg-greenHl  text-2xl text-center my-2 mx-4  rounded-2xl text-gray-200 py-4 ">
             Search results
           </h2>
