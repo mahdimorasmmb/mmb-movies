@@ -2,6 +2,7 @@ import React from "react";
 import useMovieDB from "../../src/hooks/useMovieDB";
 import { Swiper, SwiperSlide } from "swiper/react";
 import CardMovie from "./CardMovie";
+import Loading from "./Loading";
 
 // Import Swiper styles
 
@@ -30,15 +31,13 @@ export default function MovieSwiper({ loading, data }) {
       onSlideChange={() => console.log("slide change")}
       onSwiper={(swiper) => console.log(swiper)}
     >
-      {loading ? (
-        <h1>is loading....</h1>
-      ) : (
-        data?.results.map((movie) => (
-          <SwiperSlide>
-            <CardMovie movie={movie} />
-          </SwiperSlide>
-        ))
-      )}
+      {loading
+        ? ""
+        : data?.results.map((movie) => (
+            <SwiperSlide>
+              <CardMovie movie={movie} />
+            </SwiperSlide>
+          ))}
     </Swiper>
   );
 }

@@ -5,6 +5,7 @@ import React from "react";
 import CardMovie from "../../component/CardMovie";
 import useMovieDB from "../../hooks/useMovieDB";
 import { useState } from "react";
+import Loading from "../../component/Loading";
 
 export default function TopRatedMoviePage() {
   const [page, setPage] = useState(1);
@@ -17,9 +18,11 @@ export default function TopRatedMoviePage() {
       <h2 className="text-3xl  mx-6 mt-5 font-bold text-gray-200">
         Top Rated Movie
       </h2>
-      <Grid container spacing={1}>
+      <Grid container spacing={1} justifyContent="center" alignContent="center">
         {loading ? (
-          <h1>is loading....</h1>
+          <Grid>
+            <Loading />
+          </Grid>
         ) : (
           data?.results.map((movie) => (
             <Grid item xs={12} md={4} lg={3}>

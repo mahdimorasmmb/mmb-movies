@@ -5,6 +5,7 @@ import React from "react";
 import CardMovie from "../../component/CardMovie";
 import useMovieDB from "../../hooks/useMovieDB";
 import { useState } from "react";
+import Loading from "../../component/Loading";
 
 export default function TvOnTheAir() {
   const [page, setPage] = useState(1);
@@ -17,9 +18,11 @@ export default function TvOnTheAir() {
       <h2 className="text-3xl  mx-6 mt-5 font-bold text-gray-200">
         On The Air
       </h2>
-      <Grid container spacing={1}>
+      <Grid container spacing={1} alignContent="center" justifyContent="center">
         {loading ? (
-          <h1>is loading....</h1>
+          <Grid>
+            <Loading />
+          </Grid>
         ) : (
           data?.results.map((movie) => (
             <Grid item xs={12} md={4} lg={3}>
