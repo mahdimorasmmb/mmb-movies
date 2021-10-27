@@ -14,7 +14,49 @@ export default function CardMovie({ movie }) {
   );
   const account_id = useSelector((state) => state.profile.profile?.id);
   return (
-    <div className=" w-auto justify-center   lg:p-5 py-5 px-12 antialiased text-gray-900">
+    <div className=" w-auto justify-center   lg:px-2 py-5  antialiased text-gray-900">
+      {favorite ? (
+        favorite?.results.length !== 0 ? (
+          favorite.results.find((item) => item.id === movie?.id) ? (
+            <StarTwoTone
+              twoToneColor="yellow"
+              style={{ color: "yellow" }}
+              className="absolute z-50  bg-yellow-400 text-4xl md:text-6xl sm:text-5xl mr-3 cursor-pointer"
+              onClick={() => {
+                profileAction.setFavorite(
+                  account_id,
+                  media_type,
+                  movie.id,
+                  false
+                );
+              }}
+            />
+          ) : (
+            <StarOutlined
+              style={{ color: "yellow" }}
+              className="absolute z-50   text-4xl md:text-6xl sm:text-5xl mr-3 cursor-pointer"
+              onClick={() => {
+                profileAction.setFavorite(
+                  account_id,
+                  media_type,
+                  movie.id,
+                  true
+                );
+              }}
+            />
+          )
+        ) : (
+          <StarOutlined
+            style={{ color: "yellow" }}
+            className="absolute z-50   text-4xl md:text-6xl sm:text-5xl mr-3 cursor-pointer"
+            onClick={() => {
+              profileAction.setFavorite(account_id, media_type, movie.id, true);
+            }}
+          />
+        )
+      ) : (
+        ""
+      )}
       <Link
         to={
           media_type === "movie"
@@ -23,20 +65,24 @@ export default function CardMovie({ movie }) {
         }
       >
         <img
+          title={movie.name ? movie.name : movie.title}
           src={imgSrc(movie.poster_path, "w780")}
           className="hover:opacity-70 cursor-pointer translate-x-1 w-full h-auto object-contain  rounded-lg shadow-md"
         />
       </Link>
-      <div className="relative text -mt-4">
-        <div className="bg-greenHl p-3 rounded-2xl flex flex-col shadow-lg">
-          <div className="flex justify-between items-center">
-            <p className="md:text-2xl text-xl text-center font-bold   text-gray-100">
+      <div className="relative text justify-center items-center   -mt-4">
+        <div className="bg-greenHl p-3 rounded-2xl  justify-between flex flex-col shadow-lg">
+          <div className="flex justify-between  items-center">
+            <p
+              title={movie.name ? movie.name : movie.title}
+              className="md:text-2xl text-xl text-center font-bold   text-gray-100"
+            >
               {movie.name
-                ? movie.name.length > 18
-                  ? `${movie.name.substring(0, 18)}...`
+                ? movie.name.length > 25
+                  ? `${movie.name.substring(0, 25)}...`
                   : movie.name
-                : movie.title.length > 18
-                ? `${movie.title.substring(0, 18)}...`
+                : movie.title.length > 25
+                ? `${movie.title.substring(0, 25)}...`
                 : movie.title}
             </p>
             <span className="bg-greenHd border-8 border-solid border-greenHl flex justify-center items-center rounded-full w-20 h-20 text-2xl mt-3 text-yellow-400 font-extrabold">

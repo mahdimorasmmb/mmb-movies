@@ -10,16 +10,63 @@ import { useSelector } from "react-redux";
 export default function TvInfoPage() {
   const { id } = useParams();
   const { data, loading } = useMovieDB(`/tv/${id}`);
-  // const favorite = useSelector(
-  //   (state) => state.profile?.favorite[`${data.title ? "movie" : "tv"}`]
-  // );
-  // const media_type = `${data.title ? "movie" : "tv"}`;
+  const favorite = useSelector(
+    (state) => state.profile?.favorite[`${data?.title ? "movie" : "tv"}`]
+  );
+  const media_type = `${data?.title ? "movie" : "tv"}`;
   const account_id = useSelector((state) => state.profile.profile?.id);
   console.log(data);
   return (
     <div className=" p-4 bg-greenHd w-full  flex flex-col sm:flex-row text-gray-100">
       {/* <!--Banner image--> */}
       <div className="sm:w-1/2 w-full p-5">
+        {favorite ? (
+          favorite?.results.length !== 0 ? (
+            favorite.results.find((item) => item.id === data?.id) ? (
+              <StarTwoTone
+                twoToneColor="yellow"
+                style={{ color: "yellow" }}
+                className="absolute z-50  bg-yellow-400 text-4xl md:text-6xl sm:text-5xl mr-3 cursor-pointer"
+                onClick={() => {
+                  profileAction.setFavorite(
+                    account_id,
+                    media_type,
+                    data.id,
+                    false
+                  );
+                }}
+              />
+            ) : (
+              <StarOutlined
+                style={{ color: "yellow" }}
+                className="absolute z-50   text-4xl md:text-6xl sm:text-5xl mr-3 cursor-pointer"
+                onClick={() => {
+                  profileAction.setFavorite(
+                    account_id,
+                    media_type,
+                    data.id,
+                    true
+                  );
+                }}
+              />
+            )
+          ) : (
+            <StarOutlined
+              style={{ color: "yellow" }}
+              className="absolute z-50   text-4xl md:text-6xl sm:text-5xl mr-3 cursor-pointer"
+              onClick={() => {
+                profileAction.setFavorite(
+                  account_id,
+                  media_type,
+                  data.id,
+                  true
+                );
+              }}
+            />
+          )
+        ) : (
+          ""
+        )}
         <img
           className="rounded-lg w-full object-cover"
           src={imgSrc(data?.poster_path, "w500")}

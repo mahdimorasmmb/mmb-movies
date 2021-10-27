@@ -1,4 +1,6 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import TheatersIcon from "@mui/icons-material/Theaters";
 
 export default function Footer() {
   return (
@@ -27,11 +29,18 @@ export default function Footer() {
         <hr className="h-px mt-6 bg-gray-700 border-none" />
 
         <div className="flex flex-col items-center justify-between mt-6 md:flex-row">
-          <div>
-            <a href="#" className="text-xl font-bold">
-              Brand
-            </a>
+          <div className="hidden lg:flex items-center">
+            <Link className="text-gray-200 hover:text-gray-200" to="/">
+              {" "}
+              <TheatersIcon sx={{ fontSize: 90 }} />
+            </Link>
+            <h2 className="lg:text-2xl sm:block text-xl ml-2  text-gray-200 lg:font-extrabold  ">
+              <Link className="text-gray-200 hover:text-gray-200" to="/">
+                MmbMovie
+              </Link>
+            </h2>
           </div>
+
           <div className="flex mt-4 md:m-0">
             <div className="-mx-4">
               <a href="#" className="px-4 text-sm">

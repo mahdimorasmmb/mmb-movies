@@ -25,7 +25,7 @@ export default function TopRatedMoviePage() {
           </Grid>
         ) : (
           data?.results.map((movie) => (
-            <Grid item xs={12} md={4} lg={3}>
+            <Grid item xs={12} md={6} lg={4}>
               <CardMovie movie={movie} />
             </Grid>
           ))

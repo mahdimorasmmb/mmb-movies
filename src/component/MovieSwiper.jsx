@@ -17,15 +17,15 @@ export default function MovieSwiper({ loading, data }) {
       breakpoints={{
         400: {
           slidesPerView: 1,
-          spaceBetween: 10,
+          spaceBetween: 2,
         },
         768: {
           slidesPerView: 2,
-          spaceBetween: 10,
+          spaceBetween: 2,
         },
         1279: {
-          slidesPerView: 4,
-          spaceBetween: 5,
+          slidesPerView: 3,
+          spaceBetween: 2,
         },
       }}
       onSlideChange={() => console.log("slide change")}
