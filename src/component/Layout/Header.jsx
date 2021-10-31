@@ -80,6 +80,9 @@ export default function Header() {
           Logout
         </button>
       </Menu.Item>
+      <Menu.Item>
+        <Link to="/watch-list"> Watch List</Link>
+      </Menu.Item>
     </Menu>
   );
   const itemMene = (

@@ -5,6 +5,7 @@ import Login from "./Login/Login";
 import MovieInfoPage from "./Movie/MovieInfoPage";
 import PopularMoviePage from "./Movie/PopularMoviePage";
 import TopRatedMoviePage from "./Movie/TopRatedMoviePage";
+import WatchList from "./profile/WatchList";
 
 import SearchPage from "./SearchPage";
 
@@ -49,6 +50,9 @@ export default function Pages() {
       </Route>
       <Route path="/search">
         <SearchPage />
+      </Route>
+      <Route path="/watch-list">
+        <WatchList />
       </Route>
     </Switch>
   );

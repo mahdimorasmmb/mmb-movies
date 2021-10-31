@@ -3,6 +3,7 @@ import { addWatchList } from "../../services/addWatchlist";
 import { api } from "../../services/api";
 import { apiAccount } from "../../services/apiAccount";
 import { getFavoriteApi } from "../../services/getFavoriteApi";
+import { getWatchList } from "../../services/getWatchList";
 import { setFavoriteApi } from "../../services/setFavoriteApi";
 import { LOG_OUT, SET_PROFILE, SET_STORE } from "../constant/constant";
 import { store } from "../store";
@@ -19,8 +20,8 @@ function getProfile() {
         const profile = await apiAccount(session);
         const movie = await getFavoriteApi("movies", profile.id, session);
         const tv = await getFavoriteApi("tv", profile.id, session);
-        const watchList_tv = await addWatchList("tv", profile.id, session);
-        const watchList_movies = await addWatchList(
+        const watchList_tv = await getWatchList("tv", profile.id, session);
+        const watchList_movies = await getWatchList(
           "movies",
           profile.id,
           session
@@ -59,8 +60,8 @@ function setFavorite(account_id, media_type, media_id, myFavorite) {
     const profile = await apiAccount(session);
     const movie = await getFavoriteApi("movies", profile.id, session);
     const tv = await getFavoriteApi("tv", profile.id, session);
-    const watchList_tv = await addWatchList("tv", profile.id, session);
-    const watchList_movies = await addWatchList("movies", profile.id, session);
+    const watchList_tv = await getWatchList("tv", profile.id, session);
+    const watchList_movies = await getWatchList("movies", profile.id, session);
     const store = await {
       profile,
       favorite: {
@@ -74,6 +75,7 @@ function setFavorite(account_id, media_type, media_id, myFavorite) {
     };
     window.localStorage.setItem("store", JSON.stringify(store));
     dispatch({ type: SET_STORE, payload: store });
+    console.log("favret");
   };
 }
 
@@ -89,21 +91,22 @@ function setWatchList(account_id, media_type, media_id, myWatchList) {
     );
     console.log("res", res);
     const profile = await apiAccount(session);
-    const movieW = await addWatchList("movies", profile.id, session);
-    const tvW = await addWatchList("tv", profile.id, session);
     const movie = await getFavoriteApi("movies", profile.id, session);
     const tv = await getFavoriteApi("tv", profile.id, session);
+    const watchList_tv = await getWatchList("tv", profile.id, session);
+    const watchList_movies = await getWatchList("movies", profile.id, session);
     const store = await {
       profile,
-      watchList: {
-        movie: movieW,
-        tv: tvW,
-      },
       favorite: {
         movie,
         tv,
       },
+      watchList: {
+        tv: watchList_tv,
+        movies: watchList_movies,
+      },
     };
+    console.log("wach");
     window.localStorage.setItem("store", JSON.stringify(store));
     dispatch({ type: SET_STORE, payload: store });
   };
