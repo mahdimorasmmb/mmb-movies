@@ -10,12 +10,15 @@ import "swiper/swiper-bundle.min.css";
 
 import { Provider } from "react-redux";
 import { store } from "./store/store";
+import ErrorBoundary from "./Error/ErrorBoundary";
 
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
       <Layout>
-        <Pages />
+        <ErrorBoundary>
+          <Pages />
+        </ErrorBoundary>
       </Layout>
     </BrowserRouter>
   </Provider>,

@@ -2,7 +2,13 @@ import Item from "antd/lib/list/Item";
 import React from "react";
 import imgSrc from "../helpers/imgSrc";
 
-import { StarTwoTone, StarFilled, StarOutlined } from "@ant-design/icons";
+import {
+  StarTwoTone,
+  StarFilled,
+  StarOutlined,
+  ClockCircleOutlined,
+  ClockCircleTwoTone,
+} from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import profileAction from "../store/actions/profileAction";
@@ -12,9 +18,13 @@ export default function CardMovie({ movie }) {
   const favorite = useSelector(
     (state) => state.profile?.favorite[`${movie.title ? "movie" : "tv"}`]
   );
+  const watchList = useSelector(
+    (state) => state.profile?.watchList[`${movie.title ? "movies" : "tv"}`]
+  );
+  console.log(watchList);
   const account_id = useSelector((state) => state.profile.profile?.id);
   return (
-    <div className=" w-auto justify-center   lg:px-2 py-5  antialiased text-gray-900">
+    <div className=" relative w-auto justify-center   lg:px-2 py-5  antialiased text-gray-900">
       {favorite ? (
         favorite?.results.length !== 0 ? (
           favorite.results.find((item) => item.id === movie?.id) ? (
@@ -57,6 +67,54 @@ export default function CardMovie({ movie }) {
       ) : (
         ""
       )}
+
+      {watchList ? (
+        watchList?.results.length !== 0 ? (
+          watchList.results.find((item) => item.id === movie?.id) ? (
+            <ClockCircleTwoTone
+              twoToneColor="red"
+              className="  right-2 absolute z-50 p-2  bg-red-800 text-4xl md:text-6xl sm:text-5xl  cursor-pointer"
+              onClick={() => {
+                profileAction.setWatchList(
+                  account_id,
+                  media_type,
+                  movie.id,
+                  false
+                );
+              }}
+            />
+          ) : (
+            <ClockCircleOutlined
+              style={{ color: "red" }}
+              className="right-2 absolute z-50 p-2 text-4xl md:text-6xl sm:text-5xl mr-3 cursor-pointer"
+              onClick={() => {
+                profileAction.setWatchList(
+                  account_id,
+                  media_type,
+                  movie.id,
+                  true
+                );
+              }}
+            />
+          )
+        ) : (
+          <ClockCircleOutlined
+            style={{ color: "red" }}
+            className="right-2 absolute z-50 p-2 text-4xl md:text-6xl sm:text-5xl mr-3 cursor-pointer"
+            onClick={() => {
+              profileAction.setWatchList(
+                account_id,
+                media_type,
+                movie.id,
+                true
+              );
+            }}
+          />
+        )
+      ) : (
+        ""
+      )}
+
       <Link
         to={
           media_type === "movie"
@@ -67,7 +125,7 @@ export default function CardMovie({ movie }) {
         <img
           title={movie.name ? movie.name : movie.title}
           src={imgSrc(movie.poster_path, "w780")}
-          className="hover:opacity-70 cursor-pointer translate-x-1 w-full h-auto object-contain  rounded-lg shadow-md"
+          className="hover:opacity-70 block cursor-pointer translate-x-1 w-full h-auto object-contain  rounded-lg shadow-md"
         />
       </Link>
       <div className="relative text justify-center items-center   -mt-4">

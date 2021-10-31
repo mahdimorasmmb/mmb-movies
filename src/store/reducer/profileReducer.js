@@ -1,4 +1,5 @@
 import {
+  ADD_WATCH_LIST,
   LOG_OUT,
   SET_FAVORITE,
   SET_FAVORITE_MOVIE,
@@ -14,37 +15,16 @@ export default function profileReducer(
       movie: null,
       tv: null,
     },
-    watchList: null,
+    watchList: {
+      movie: null,
+      tv: null,
+    },
   },
   action
 ) {
   switch (action.type) {
     case SET_STORE:
       return action.payload;
-    case SET_PROFILE:
-      return {
-        profile: action.payload,
-        ...state,
-      };
-    case SET_FAVORITE:
-      return {
-        ...state,
-        favorite: action.payload,
-      };
-    case SET_FAVORITE_MOVIE:
-      return {
-        favorite: {
-          movie: action.payload,
-        },
-        ...state,
-      };
-    case SET_FAVORITE_TV:
-      return {
-        favorite: {
-          tv: action.payload,
-        },
-        ...state,
-      };
 
     case LOG_OUT:
       return null;

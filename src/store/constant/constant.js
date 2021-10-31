@@ -7,3 +7,4 @@ export const SET_FAVORITE_TV = "SET_FAVORITE_TV";
 export const SET_FAVORITE = "SET_FAVORITE";
 export const SET_STORE = "SET_STORE";
 export const SEARCH = "SEARCH";
+export const ADD_WATCH_LIST = "ADD_WATCH_LIST";
