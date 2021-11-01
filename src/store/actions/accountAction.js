@@ -5,6 +5,7 @@ import { store } from "../store";
 import { api } from "../../services/api";
 import { useHistory } from "react-router";
 import profileAction from "./profileAction";
+import errorMessageAction from "./errorMessageAction";
 
 function login(user) {
   return async (dispatch) => {
@@ -41,6 +42,7 @@ function login(user) {
       dispatch({ type: LOGIN, payload: session });
       profileAction.getProfile();
       user.history.push("/");
+      errorMessageAction.setError(`welcome ${user.userName}`);
     }
   };
 }

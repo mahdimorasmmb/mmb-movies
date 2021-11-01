@@ -10,7 +10,9 @@ export default function PopMoviesSlider() {
 
   return (
     <>
-      <h2 className="text-gray-200 mx-6 mt-5 text-3xl  font-bold"></h2>
+      <h2 className="text-gray-200 mx-6 mt-5 text-3xl  font-bold">
+        Popular movie
+      </h2>
       {loading && <Loading />}
       <MovieSwiper data={data} loading={loading} />
     </>

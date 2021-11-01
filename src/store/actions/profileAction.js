@@ -39,14 +39,12 @@ function getProfile() {
         };
         window.localStorage.setItem("store", JSON.stringify(store));
         dispatch({ type: SET_STORE, payload: store });
-      } else {
-        errorMessageAction.setError("user not login ", "notLogin");
       }
     }
   };
 }
 
-function setFavorite(account_id, media_type, media_id, myFavorite) {
+function setFavorite(account_id, media_type, media_id, myFavorite, nameMovie) {
   return async (dispatch) => {
     const session = JSON.parse(localStorage.getItem("session"));
     const res = await setFavoriteApi(
@@ -56,7 +54,7 @@ function setFavorite(account_id, media_type, media_id, myFavorite) {
       media_id,
       myFavorite
     );
-    console.log("res", res);
+
     const profile = await apiAccount(session);
     const movie = await getFavoriteApi("movies", profile.id, session);
     const tv = await getFavoriteApi("tv", profile.id, session);
@@ -76,10 +74,23 @@ function setFavorite(account_id, media_type, media_id, myFavorite) {
     window.localStorage.setItem("store", JSON.stringify(store));
     dispatch({ type: SET_STORE, payload: store });
     console.log("favret");
+    errorMessageAction.setError(
+      `The  ${nameMovie} ${
+        myFavorite
+          ? " was add favorite List successfully "
+          : "was deleted  favorite List successfully"
+      } `
+    );
   };
 }
 
-function setWatchList(account_id, media_type, media_id, myWatchList) {
+function setWatchList(
+  account_id,
+  media_type,
+  media_id,
+  myWatchList,
+  nameMovie
+) {
   return async (dispatch) => {
     const session = JSON.parse(localStorage.getItem("session"));
     const res = await addWatchList(
@@ -89,7 +100,7 @@ function setWatchList(account_id, media_type, media_id, myWatchList) {
       media_id,
       myWatchList
     );
-    console.log("res", res);
+
     const profile = await apiAccount(session);
     const movie = await getFavoriteApi("movies", profile.id, session);
     const tv = await getFavoriteApi("tv", profile.id, session);
@@ -109,6 +120,13 @@ function setWatchList(account_id, media_type, media_id, myWatchList) {
     console.log("wach");
     window.localStorage.setItem("store", JSON.stringify(store));
     dispatch({ type: SET_STORE, payload: store });
+    errorMessageAction.setError(
+      `The  ${nameMovie} ${
+        myWatchList
+          ? " was add  watch List successfully "
+          : "was watch List deleted successfully"
+      } `
+    );
   };
 }
 
@@ -116,7 +134,8 @@ function logOut(history) {
   return async (dispatch) => {
     dispatch({ type: LOG_OUT });
     window.localStorage.removeItem("store");
-    history.push("/");
+    history.push("/login");
+    errorMessageAction.setError(`log out ...... `, "info", true);
   };
 }
 

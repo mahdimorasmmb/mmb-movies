@@ -65,7 +65,9 @@ export default function Header() {
 
   const CelebritiesItem = (
     <Menu className={classes.menu}>
-      <Menu.Item className={classes.item}>Popular </Menu.Item>
+      <Menu.Item className={classes.item}>
+        <Link to="/people-popular">Popular</Link>{" "}
+      </Menu.Item>
     </Menu>
   );
 
@@ -82,6 +84,9 @@ export default function Header() {
       </Menu.Item>
       <Menu.Item>
         <Link to="/watch-list"> Watch List</Link>
+      </Menu.Item>
+      <Menu.Item>
+        <Link to="/favorite-list"> Favorite List</Link>
       </Menu.Item>
     </Menu>
   );
@@ -257,7 +262,7 @@ export default function Header() {
           </p>
         </div> */}
 
-        {/* <Dropdown
+        <Dropdown
           className="hidden lg:block"
           overlay={CelebritiesItem}
           placement="bottomLeft"
@@ -270,11 +275,11 @@ export default function Header() {
             <p
               className={`uppercase let tracking-widest mx-auto text-xs opacity-0   group-hover:opacity-100 `}
             >
-              CelebritiesIcon
+              People
             </p>
           </div>
         </Dropdown>
-        <Dropdown
+        {/* <Dropdown
           className="hidden lg:block"
           overlay={menu}
           placement="bottomLeft"
@@ -290,7 +295,7 @@ export default function Header() {
               Community
             </p>
           </div>
-        </Dropdown> */}
+        </Dropdown>  */}
       </div>
       {profile ? (
         <Dropdown

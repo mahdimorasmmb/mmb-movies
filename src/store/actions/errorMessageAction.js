@@ -2,13 +2,24 @@ import { bindActionCreators } from "redux";
 import { SET_ERROR } from "../constant/constant";
 import { store } from "../store";
 
-function setError(message, title) {
-  return {
-    type: SET_ERROR,
-    payload: {
-      message,
-      title,
-    },
+function setError(message) {
+  return async (dispatch) => {
+    dispatch({
+      type: SET_ERROR,
+      payload: {
+        message,
+        isActive: "",
+      },
+    });
+    setTimeout(() => {
+      dispatch({
+        type: SET_ERROR,
+        payload: {
+          message,
+          isActive: "hidden",
+        },
+      });
+    }, 5000);
   };
 }
 

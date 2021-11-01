@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import TheatersIcon from "@mui/icons-material/Theaters";
+import Message from "../Message";
+import { useSelector } from "react-redux";
 
 export default function Footer() {
   return (

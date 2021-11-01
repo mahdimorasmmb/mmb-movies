@@ -22,45 +22,56 @@ export default function CardMovie({ movie }) {
     (state) => state.profile?.watchList[`${movie.title ? "movies" : "tv"}`]
   );
   console.log(watchList);
-  const account_id = useSelector((state) => state.profile.profile?.id);
+  const account_id = useSelector((state) => state.profile?.profile?.id);
+  const name = `${movie.name ? movie.name : movie.title}`;
   return (
     <div className=" relative w-auto justify-center   lg:px-2 py-5  antialiased text-gray-900">
       {favorite ? (
         favorite?.results.length !== 0 ? (
           favorite.results.find((item) => item.id === movie?.id) ? (
             <StarTwoTone
-              twoToneColor="yellow"
-              style={{ color: "yellow" }}
-              className="absolute z-50  bg-yellow-400 text-4xl md:text-6xl sm:text-5xl mr-3 cursor-pointer"
+              twoToneColor="#042727"
+              style={{ color: "#051421" }}
+              className="absolute z-50  bg-greenHd rounded-full text-4xl md:text-6xl sm:text-5xl mr-3 cursor-pointer"
               onClick={() => {
                 profileAction.setFavorite(
                   account_id,
                   media_type,
                   movie.id,
-                  false
+                  false,
+                  name
                 );
               }}
             />
           ) : (
-            <StarOutlined
-              style={{ color: "yellow" }}
+            <StarTwoTone
+              twoToneColor="#042727"
+              style={{ color: "#042727" }}
               className="absolute z-50   text-4xl md:text-6xl sm:text-5xl mr-3 cursor-pointer"
               onClick={() => {
                 profileAction.setFavorite(
                   account_id,
                   media_type,
                   movie.id,
-                  true
+                  true,
+                  name
                 );
               }}
             />
           )
         ) : (
-          <StarOutlined
-            style={{ color: "yellow" }}
+          <StarTwoTone
+            twoToneColor="#042727"
+            style={{ color: "#042727" }}
             className="absolute z-50   text-4xl md:text-6xl sm:text-5xl mr-3 cursor-pointer"
             onClick={() => {
-              profileAction.setFavorite(account_id, media_type, movie.id, true);
+              profileAction.setFavorite(
+                account_id,
+                media_type,
+                movie.id,
+                true,
+                name
+              );
             }}
           />
         )
@@ -72,14 +83,15 @@ export default function CardMovie({ movie }) {
         watchList?.results.length !== 0 ? (
           watchList.results.find((item) => item.id === movie?.id) ? (
             <ClockCircleTwoTone
-              twoToneColor="red"
-              className="  right-2 absolute z-50 p-2  bg-red-800 text-4xl md:text-6xl sm:text-5xl  cursor-pointer"
+              twoToneColor="#E5E7EB"
+              className="  right-2 rounded-full  absolute z-50 p-4 bg-greenHl  text-4xl md:text-6xl sm:text-5xl  cursor-pointer"
               onClick={() => {
                 profileAction.setWatchList(
                   account_id,
                   media_type,
                   movie.id,
-                  false
+                  false,
+                  name
                 );
               }}
             />
@@ -92,7 +104,8 @@ export default function CardMovie({ movie }) {
                   account_id,
                   media_type,
                   movie.id,
-                  true
+                  true,
+                  name
                 );
               }}
             />
@@ -106,7 +119,8 @@ export default function CardMovie({ movie }) {
                 account_id,
                 media_type,
                 movie.id,
-                true
+                true,
+                name
               );
             }}
           />

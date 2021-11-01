@@ -1,8 +1,8 @@
 import React from "react";
-import img from "../img/blank-profile.png";
-import useMovieDB from "../../src/hooks/useMovieDB";
+
 import { Swiper, SwiperSlide } from "swiper/react";
-import imgSrc from "../helpers/imgSrc";
+
+import CardPeople from "./CardPeople";
 
 export default function CastSwiper({ castes }) {
   return (
@@ -34,23 +34,7 @@ export default function CastSwiper({ castes }) {
       ) : (
         castes?.data?.cast.map((item) => (
           <SwiperSlide>
-            <div className="flex items-center space-x-6 mb-4">
-              <img
-                className="h-28 w-28 object-cover object-center rounded-full"
-                src={
-                  item.profile_path ? imgSrc(item.profile_path, "w185") : img
-                }
-                alt="photo"
-              />
-              <div>
-                <p className="text-xl text-gray-200 font-normal mb-1">
-                  {item.name}
-                </p>
-                <p className="text-base text-blue-600 font-normal">
-                  {item.known_for_department}
-                </p>
-              </div>
-            </div>
+            <CardPeople item={item} />
           </SwiperSlide>
         ))
       )}

@@ -31,13 +31,15 @@ export default function MovieSwiper({ loading, data }) {
       onSlideChange={() => console.log("slide change")}
       onSwiper={(swiper) => console.log(swiper)}
     >
-      {loading
-        ? ""
-        : data?.results.map((movie) => (
-            <SwiperSlide>
-              <CardMovie movie={movie} />
-            </SwiperSlide>
-          ))}
+      {loading ? (
+        <Loading />
+      ) : (
+        data?.results.map((movie) => (
+          <SwiperSlide>
+            <CardMovie movie={movie} />
+          </SwiperSlide>
+        ))
+      )}
     </Swiper>
   );
 }
