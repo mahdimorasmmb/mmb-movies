@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import TheatersIcon from "@mui/icons-material/Theaters";
-import HomeIcon from "@mui/icons-material/Home";
 import MovieIcon from "@mui/icons-material/Movie";
-import CelebritiesIcon from "../Icon/CelebritiesIcon";
-import NewsIcon from "../Icon/NewsIcon";
-import CommunityIcon from "../Icon/CommunityIcon";
+import LiveTvIcon from "@mui/icons-material/LiveTv";
+
+import HomeIcon from "@mui/icons-material/Home";
+import CelebritiesIcon from "../../Icon/CelebritiesIcon";
 import SearchIcon from "@mui/icons-material/Search";
 import {
   AppstoreOutlined,
@@ -17,111 +17,26 @@ import {
 import { Menu, Dropdown, Button, Modal } from "antd";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import profileAction from "../../store/actions/profileAction";
-import imgSrc from "../../helpers/imgSrc";
+import profileAction from "../../../store/actions/profileAction";
+import imgSrc from "../../../helpers/imgSrc";
 import { useHistory } from "react-router";
-import MyMenu from "../MyMenu";
-import LiveTvIcon from "@mui/icons-material/LiveTv";
 
-import classes from "./header.module.scss";
-import SubMenu from "antd/lib/menu/SubMenu";
-import searchAction from "../../store/actions/searchAction";
+import searchAction from "../../../store/actions/searchAction";
+import MovieItems from "./MovieItems";
+import TvItems from "./TvItems";
+import CelebritiesItem from "./CelebritiesItem";
+import ItemsProfile from "./ItemsProfile";
+import MovieItemMobile from "./MovieItemMobile";
 
 export default function Header() {
   const [searchInput, setSearchInput] = useState("");
   const [isModalVisible, setIsModalVisible] = useState(false);
+
   const history = useHistory();
   const profile = useSelector((state) => state.profile?.profile);
   useEffect(() => {
     profileAction.getProfile();
   }, []);
-  const movieItems = (
-    <Menu theme="dark" className={classes.menu}>
-      <Menu.Item className={classes.item}>
-        <Link to="/popular-movie">Popular Movie</Link>
-      </Menu.Item>
-      <Menu.Item className={classes.item}>
-        <Link to="/top-rated-movie">Top Rated</Link>{" "}
-      </Menu.Item>
-    </Menu>
-  );
-
-  const tvItems = (
-    <Menu theme="dark" className={classes.menu}>
-      <Menu.Item className={classes.item}>
-        <Link to="/popular-tv">Popular TV</Link>{" "}
-      </Menu.Item>
-      <Menu.Item className={classes.item}>
-        <Link to="/top-rated-tv">Top Rated TV</Link>{" "}
-      </Menu.Item>
-      <Menu.Item className={classes.item}>
-        <Link to="/airing-today-tv">Airing Today</Link>{" "}
-      </Menu.Item>
-      <Menu.Item className={classes.item}>
-        <Link to="/on-the-air-tv">On The Air</Link>{" "}
-      </Menu.Item>
-    </Menu>
-  );
-
-  const CelebritiesItem = (
-    <Menu className={classes.menu}>
-      <Menu.Item className={classes.item}>
-        <Link to="/people-popular">Popular</Link>{" "}
-      </Menu.Item>
-    </Menu>
-  );
-
-  const itemsProfile = (
-    <Menu theme="dark">
-      <Menu.Item>
-        <button
-          onClick={() => {
-            profileAction.logOut(history);
-          }}
-        >
-          Logout
-        </button>
-      </Menu.Item>
-      <Menu.Item>
-        <Link to="/watch-list"> Watch List</Link>
-      </Menu.Item>
-      <Menu.Item>
-        <Link to="/favorite-list"> Favorite List</Link>
-      </Menu.Item>
-    </Menu>
-  );
-  const itemMene = (
-    <Menu mode="inline" className={classes.menu}>
-      <SubMenu key="sub1" icon={<MovieIcon />} title="MOVIE">
-        <Menu.Item className={classes.item}>
-          <Link to="/popular-movie">Popular Movie</Link>
-        </Menu.Item>
-        <Menu.Item className={classes.item}>
-          <Link to="/top-rated-movie">Top Rated</Link>{" "}
-        </Menu.Item>
-      </SubMenu>
-      <SubMenu key="sub2" icon={<LiveTvIcon />} title="TV">
-        <Menu.Item className={classes.item}>
-          <Link to="/popular-tv">Popular TV</Link>{" "}
-        </Menu.Item>
-        <Menu.Item className={classes.item}>
-          <Link to="/top-rated-tv">Top Rated TV</Link>{" "}
-        </Menu.Item>
-        <Menu.Item className={classes.item}>
-          <Link to="/airing-today-tv">Airing Today</Link>{" "}
-        </Menu.Item>
-        <Menu.Item className={classes.item}>
-          <Link to="/on-the-air-tv">On The Air</Link>{" "}
-        </Menu.Item>
-      </SubMenu>
-      <Menu.Item
-        onClick={setIsModalVisible}
-        key="sub4"
-        icon={<SearchIcon />}
-        title="SEARCH"
-      ></Menu.Item>
-    </Menu>
-  );
 
   const showModal = () => {
     setIsModalVisible(true);
@@ -142,7 +57,10 @@ export default function Header() {
 
   return (
     <header className="flex  text-gray-200  bg-greenHl items-center  lg:justify-around  justify-between shadow-3xl px-8    ">
-      <Dropdown overlay={itemMene} trigger={["click"]}>
+      <Dropdown
+        overlay={<MovieItemMobile setIsModalVisible={setIsModalVisible} />}
+        trigger={["click"]}
+      >
         <div className="  lg:hidden">
           <MenuOutlined style={{ fontSize: 40 }} />
         </div>
@@ -161,10 +79,23 @@ export default function Header() {
             </Link>
           </h2>
         </div>
-        <div className="flex flex-row">
+        <div className="flex flex-row justify-around w-2/3">
+          <div
+            className={`text-white  group  flex-col cursor-pointer w-24 hidden lg:flex `}
+          >
+            <HomeIcon
+              className={` mx-auto group-hover:animate-bounce $`}
+              sx={{ fontSize: 30 }}
+            />
+            <p
+              className={`uppercase let tracking-widest mx-auto text-xs opacity-0  group-hover:opacity-100 `}
+            >
+              <Link to="/">Home</Link>
+            </p>
+          </div>
           <Dropdown
             className="hidden lg:block"
-            overlay={movieItems}
+            overlay={MovieItems}
             placement="bottomLeft"
             arrow
           >
@@ -183,7 +114,7 @@ export default function Header() {
 
           <Dropdown
             className="hidden lg:block"
-            overlay={tvItems}
+            overlay={TvItems}
             placement="bottomLeft"
             arrow
           >
@@ -195,6 +126,23 @@ export default function Header() {
                 className={`uppercase let tracking-widest mx-auto text-xs opacity-0   group-hover:opacity-100 `}
               >
                 Tv
+              </p>
+            </div>
+          </Dropdown>
+          <Dropdown
+            className="hidden lg:block"
+            overlay={CelebritiesItem}
+            placement="bottomRight"
+            arrow
+          >
+            <div className="group flex flex-col cursor-pointer w-24">
+              <CelebritiesIcon
+                className={` w-8 h-8 fill-current text-white  mx-auto group-hover:animate-bounce `}
+              />
+              <p
+                className={`uppercase let tracking-widest mx-auto text-xs opacity-0   group-hover:opacity-100 `}
+              >
+                People
               </p>
             </div>
           </Dropdown>
@@ -248,58 +196,11 @@ export default function Header() {
             </div>
           </div>
         </Modal>
-        {/* <div
-          className={`text-white  group  flex-col cursor-pointer w-24 hidden lg:flex `}
-        >
-          <HomeIcon
-            className={` mx-auto group-hover:animate-bounce $`}
-            sx={{ fontSize: 30 }}
-          />
-          <p
-            className={`uppercase let tracking-widest mx-auto text-xs opacity-0  group-hover:opacity-100 `}
-          >
-            <Link to="/">Home</Link>
-          </p>
-        </div> */}
-
-        <Dropdown
-          className="hidden lg:block"
-          overlay={CelebritiesItem}
-          placement="bottomLeft"
-          arrow
-        >
-          <div className="group flex flex-col cursor-pointer w-24">
-            <CelebritiesIcon
-              className={` w-8 h-8 fill-current text-white  mx-auto group-hover:animate-bounce `}
-            />
-            <p
-              className={`uppercase let tracking-widest mx-auto text-xs opacity-0   group-hover:opacity-100 `}
-            >
-              People
-            </p>
-          </div>
-        </Dropdown>
-        {/* <Dropdown
-          className="hidden lg:block"
-          overlay={menu}
-          placement="bottomLeft"
-          arrow
-        >
-          <div className="group flex flex-col cursor-pointer w-24">
-            <CommunityIcon
-              className={` mx-auto w-9 h-9 fill-current text-white group-hover:animate-bounce `}
-            />
-            <p
-              className={`uppercase let tracking-widest mx-auto text-xs opacity-0   group-hover:opacity-100  `}
-            >
-              Community
-            </p>
-          </div>
-        </Dropdown>  */}
       </div>
       {profile ? (
         <Dropdown
-          overlay={itemsProfile}
+          className="mr-10 bg-greenHl"
+          overlay={<ItemsProfile history={history} />}
           placement="bottomLeft"
           trigger={["click"]}
           arrow

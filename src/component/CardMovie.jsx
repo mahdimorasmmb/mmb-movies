@@ -8,6 +8,7 @@ import {
   StarOutlined,
   ClockCircleOutlined,
   ClockCircleTwoTone,
+  DesktopOutlined,
 } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -29,10 +30,9 @@ export default function CardMovie({ movie }) {
       {favorite ? (
         favorite?.results.length !== 0 ? (
           favorite.results.find((item) => item.id === movie?.id) ? (
-            <StarTwoTone
-              twoToneColor="#042727"
-              style={{ color: "#051421" }}
-              className="absolute z-50  bg-greenHd rounded-full text-4xl md:text-6xl sm:text-5xl mr-3 cursor-pointer"
+            <StarOutlined
+              style={{ color: "#E5E7EB" }}
+              className="absolute z-40  bg-greenHd rounded-full text-3xl md:text-5xl sm:text-4xl mr-3 cursor-pointer"
               onClick={() => {
                 profileAction.setFavorite(
                   account_id,
@@ -44,10 +44,9 @@ export default function CardMovie({ movie }) {
               }}
             />
           ) : (
-            <StarTwoTone
-              twoToneColor="#042727"
-              style={{ color: "#042727" }}
-              className="absolute z-50   text-4xl md:text-6xl sm:text-5xl mr-3 cursor-pointer"
+            <StarOutlined
+              style={{ color: "#E5E7EB" }}
+              className="absolute z-40   text-2xl md:text-4xl sm:text-3xl mr-3 cursor-pointer"
               onClick={() => {
                 profileAction.setFavorite(
                   account_id,
@@ -60,10 +59,9 @@ export default function CardMovie({ movie }) {
             />
           )
         ) : (
-          <StarTwoTone
-            twoToneColor="#042727"
-            style={{ color: "#042727" }}
-            className="absolute z-50   text-4xl md:text-6xl sm:text-5xl mr-3 cursor-pointer"
+          <StarOutlined
+            style={{ color: "#E5E7EB" }}
+            className="absolute z-40   text-2xl md:text-4xl sm:text-3xl mr-3 cursor-pointer"
             onClick={() => {
               profileAction.setFavorite(
                 account_id,
@@ -82,9 +80,9 @@ export default function CardMovie({ movie }) {
       {watchList ? (
         watchList?.results.length !== 0 ? (
           watchList.results.find((item) => item.id === movie?.id) ? (
-            <ClockCircleTwoTone
-              twoToneColor="#E5E7EB"
-              className="  right-2 rounded-full  absolute z-50 p-4 bg-greenHl  text-4xl md:text-6xl sm:text-5xl  cursor-pointer"
+            <DesktopOutlined
+              style={{ color: "#E5E7EB" }}
+              className="  right-2 rounded-full  absolute z-40 p-3 bg-greenHl  text-2xl md:text-4xl sm:text-3xl  cursor-pointer"
               onClick={() => {
                 profileAction.setWatchList(
                   account_id,
@@ -96,9 +94,9 @@ export default function CardMovie({ movie }) {
               }}
             />
           ) : (
-            <ClockCircleOutlined
-              style={{ color: "red" }}
-              className="right-2 absolute z-50 p-2 text-4xl md:text-6xl sm:text-5xl mr-3 cursor-pointer"
+            <DesktopOutlined
+              style={{ color: "#E5E7EB" }}
+              className="right-2 absolute z-40 p-2 text-2xl md:text-4xl sm:text-3xl mr-3 cursor-pointer"
               onClick={() => {
                 profileAction.setWatchList(
                   account_id,
@@ -111,9 +109,9 @@ export default function CardMovie({ movie }) {
             />
           )
         ) : (
-          <ClockCircleOutlined
-            style={{ color: "red" }}
-            className="right-2 absolute z-50 p-2 text-4xl md:text-6xl sm:text-5xl mr-3 cursor-pointer"
+          <DesktopOutlined
+            style={{ color: "#E5E7EB" }}
+            className="right-2 absolute z-40 p-2 text-2xl md:text-4xl sm:text-3xl mr-3 cursor-pointer"
             onClick={() => {
               profileAction.setWatchList(
                 account_id,

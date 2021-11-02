@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import Message from "../Message";
 
 import Footer from "./Footer";
-import Header from "./Header";
+import Header from "./Header/Header";
 import Main from "./Main";
 
 export default function Layout({ children }) {
