@@ -8,11 +8,7 @@ import SearchIcon from "@mui/icons-material/Search";
 
 const MovieItemMobile = ({ setIsModalVisible }) => {
   return (
-    <Menu
-      style={{ backgroundColor: "#051421" }}
-      mode="inline"
-      className={classes.menu}
-    >
+    <Menu mode="inline" className={classes.menu}>
       <SubMenu key="sub1" icon={<MovieIcon />} title="MOVIE">
         <Menu.Item className={classes.item}>
           <Link to="/popular-movie">Popular Movie</Link>

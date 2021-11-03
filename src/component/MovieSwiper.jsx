@@ -28,14 +28,12 @@ export default function MovieSwiper({ loading, data }) {
           spaceBetween: 2,
         },
       }}
-      onSlideChange={() => console.log("slide change")}
-      onSwiper={(swiper) => console.log(swiper)}
     >
       {loading ? (
         <Loading />
       ) : (
         data?.results.map((movie) => (
-          <SwiperSlide>
+          <SwiperSlide key={movie.id}>
             <CardMovie movie={movie} />
           </SwiperSlide>
         ))

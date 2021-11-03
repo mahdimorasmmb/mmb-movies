@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import ErrorFallback from "../Error/ErrorFallback";
 
 export default function useMovieDB(endpoint, options) {
   const [data, setData] = useState(null);
@@ -6,7 +7,7 @@ export default function useMovieDB(endpoint, options) {
 
   useEffect(() => {
     fetch(
-      `https://api.themoviedb.org/3/${endpoint}?api_key=3cba95d220b545b9996fa206ce1363f6&${new URLSearchParams(
+      `https://api.themoviedborg/3/${endpoint}?api_key=3cba95d220b545b9996fa206ce1363f6&${new URLSearchParams(
         options?.query
       ).toString()}`
     )

@@ -1,32 +1,29 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useHistory } from "react-router";
+
 import TheatersIcon from "@mui/icons-material/Theaters";
 import MovieIcon from "@mui/icons-material/Movie";
 import LiveTvIcon from "@mui/icons-material/LiveTv";
-
 import HomeIcon from "@mui/icons-material/Home";
-import CelebritiesIcon from "../../Icon/CelebritiesIcon";
 import SearchIcon from "@mui/icons-material/Search";
-import {
-  AppstoreOutlined,
-  CloseOutlined,
-  MailOutlined,
-  MenuOutlined,
-  SettingOutlined,
-} from "@ant-design/icons";
 
-import { Menu, Dropdown, Button, Modal } from "antd";
-import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { Menu, Dropdown, Modal } from "antd";
+import SubMenu from "antd/lib/menu/SubMenu";
+import { MenuOutlined } from "@ant-design/icons";
+
+import CelebritiesIcon from "../../Icon/CelebritiesIcon";
+
 import profileAction from "../../../store/actions/profileAction";
 import imgSrc from "../../../helpers/imgSrc";
-import { useHistory } from "react-router";
-
 import searchAction from "../../../store/actions/searchAction";
+
 import MovieItems from "./MovieItems";
 import TvItems from "./TvItems";
 import CelebritiesItem from "./CelebritiesItem";
 import ItemsProfile from "./ItemsProfile";
-import MovieItemMobile from "./MovieItemMobile";
+import classes from "./header.module.scss";
 
 export default function Header() {
   const [searchInput, setSearchInput] = useState("");
@@ -55,12 +52,42 @@ export default function Header() {
     searchAction.searchHeader(searchInput, history, handleCancel);
   };
 
+  const items = (
+    <Menu mode="inline" className={classes.menu}>
+      <SubMenu key="sub1" icon={<MovieIcon />} title="MOVIE">
+        <Menu.Item className={classes.item}>
+          <Link to="/popular-movie">Popular Movie</Link>
+        </Menu.Item>
+        <Menu.Item className={classes.item}>
+          <Link to="/top-rated-movie">Top Rated</Link>{" "}
+        </Menu.Item>
+      </SubMenu>
+      <SubMenu key="sub2" icon={<LiveTvIcon />} title="TV">
+        <Menu.Item className={classes.item}>
+          <Link to="/popular-tv">Popular TV</Link>{" "}
+        </Menu.Item>
+        <Menu.Item className={classes.item}>
+          <Link to="/top-rated-tv">Top Rated TV</Link>{" "}
+        </Menu.Item>
+        <Menu.Item className={classes.item}>
+          <Link to="/airing-today-tv">Airing Today</Link>{" "}
+        </Menu.Item>
+        <Menu.Item className={classes.item}>
+          <Link to="/on-the-air-tv">On The Air</Link>{" "}
+        </Menu.Item>
+      </SubMenu>
+      <Menu.Item
+        onClick={setIsModalVisible}
+        key="sub4"
+        icon={<SearchIcon />}
+        title="SEARCH"
+      ></Menu.Item>
+    </Menu>
+  );
+
   return (
     <header className="flex  text-gray-200  bg-greenHl items-center  lg:justify-around  justify-between shadow-3xl px-8    ">
-      <Dropdown
-        overlay={<MovieItemMobile setIsModalVisible={setIsModalVisible} />}
-        trigger={["click"]}
-      >
+      <Dropdown overlay={items} trigger={["click"]}>
         <div className="  lg:hidden">
           <MenuOutlined style={{ fontSize: 40 }} />
         </div>
@@ -214,15 +241,9 @@ export default function Header() {
         </Dropdown>
       ) : (
         <div className="flex w-full items-center justify-end   ">
-          <Link
-            to="/login"
-            className=" mr-2 inline-block px-3 py-2 text-sm bg-gray-200 text-greenHd rounded-lg font-semibold uppercase lg:w-auto hover:text-gray-200 hover:bg-greenHd"
-          >
+          <Link to="/login" className={`mr-2 ${classes.btnPrimary}`}>
             login
           </Link>
-          <button className=" inline-block  px-3 py-2 text-sm bg-gray-200 text-greenHd rounded-lg font-semibold uppercase lg:w-auto hover:text-gray-200 hover:bg-greenHd">
-            sign in
-          </button>
         </div>
       )}
     </header>

@@ -18,10 +18,14 @@ function getProfile() {
       const session = JSON.parse(localStorage.getItem("session"));
       if (session) {
         const profile = await apiAccount(session);
-        const movie = await getFavoriteApi("movies", profile.id, session);
-        const tv = await getFavoriteApi("tv", profile.id, session);
-        const watchList_tv = await getWatchList("tv", profile.id, session);
-        const watchList_movies = await getWatchList(
+        const favoriteMovie = await getFavoriteApi(
+          "movies",
+          profile.id,
+          session
+        );
+        const favoriteTv = await getFavoriteApi("tv", profile.id, session);
+        const watchListTv = await getWatchList("tv", profile.id, session);
+        const watchListMovie = await getWatchList(
           "movies",
           profile.id,
           session
@@ -29,12 +33,12 @@ function getProfile() {
         const store = await {
           profile,
           favorite: {
-            movie,
-            tv,
+            movie: favoriteMovie,
+            tv: favoriteTv,
           },
           watchList: {
-            tv: watchList_tv,
-            movies: watchList_movies,
+            tv: watchListTv,
+            movies: watchListMovie,
           },
         };
         window.localStorage.setItem("store", JSON.stringify(store));
@@ -134,6 +138,7 @@ function logOut(history) {
   return async (dispatch) => {
     dispatch({ type: LOG_OUT });
     window.localStorage.removeItem("store");
+    window.localStorage.removeItem("session");
     history.push("/login");
     errorMessageAction.setError(`log out ...... `, "info", true);
   };

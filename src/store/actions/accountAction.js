@@ -3,7 +3,6 @@ import { LOGIN } from "../constant/constant";
 import { bindActionCreators } from "redux";
 import { store } from "../store";
 import { api } from "../../services/api";
-import { useHistory } from "react-router";
 import profileAction from "./profileAction";
 import errorMessageAction from "./errorMessageAction";
 
@@ -24,7 +23,6 @@ function login(user) {
         }),
       }
     );
-    console.log(validate_token);
     if (validate_token.success === true) {
       const session = await api("authentication/session/new", {
         method: "POST",

@@ -1,7 +1,5 @@
 import { bindActionCreators } from "redux";
-import { searchMovieServices } from "../../services/searchMovieServices";
 import { SEARCH } from "../constant/constant";
-import searchReducer from "../reducer/searchReducer";
 import { store } from "../store";
 
 function searchHeader(options, history, handleCancel) {

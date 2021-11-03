@@ -22,7 +22,7 @@ export default function CardMovie({ movie }) {
   const watchList = useSelector(
     (state) => state.profile?.watchList[`${movie.title ? "movies" : "tv"}`]
   );
-  console.log(watchList);
+
   const account_id = useSelector((state) => state.profile?.profile?.id);
   const name = `${movie.name ? movie.name : movie.title}`;
   return (
