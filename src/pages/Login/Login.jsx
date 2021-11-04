@@ -27,7 +27,7 @@ export default function Login() {
           errorMessageAction.setErrorLogin("Enter Username and Password ");
         }
       }}
-      className="container h-full mb-24 flex flex-col lg:flex-row justify-center lg:justify-center font-sans mx-auto py-5"
+      className="container h-full mb-14 mt-9 flex flex-col lg:flex-row justify-center lg:justify-center font-sans mx-auto py-5"
     >
       <div className=" h-full   lg:w-1/3 px-2 mb-6 lg:mb-0">
         <div className="bg-greenHl shadow rounded-lg">
