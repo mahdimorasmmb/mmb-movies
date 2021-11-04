@@ -95,13 +95,13 @@ export default function Header() {
       <div className=" lg:w-full flex  items-center lg:justify-start  justify-between text-center  ">
         <div className="flex flex-row items-center">
           <div className="hidden lg:block">
-            <Link className="text-gray-200 hover:text-gray-200" to="/">
+            <Link className="text-gray-200 hover:text-greenHd" to="/">
               {" "}
               <TheatersIcon sx={{ fontSize: 90 }} />
             </Link>
           </div>
           <h2 className="lg:text-2xl sm:block text-xl ml-2  text-gray-200 lg:font-extrabold  ">
-            <Link className="text-gray-200 hover:text-gray-200" to="/">
+            <Link className="text-gray-200 hover:text-greenHd" to="/">
               MmbMovie
             </Link>
           </h2>

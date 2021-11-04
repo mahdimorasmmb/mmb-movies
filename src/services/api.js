@@ -1,3 +1,5 @@
+import errorMessageAction from "../store/actions/errorMessageAction";
+
 export function api(endpoint, options = {}) {
   return new Promise((res, rej) => {
     fetch(
@@ -7,6 +9,7 @@ export function api(endpoint, options = {}) {
       .then((r) => {
         console.log(r.ok);
         if (!r.ok) {
+          errorMessageAction.setErrorLogin(r.status);
           rej(r);
         }
         return r.json();

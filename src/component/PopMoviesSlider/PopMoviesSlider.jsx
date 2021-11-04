@@ -2,8 +2,6 @@ import React, { useContext } from "react";
 import useMovieDB from "../../hooks/useMovieDB";
 import CardMovie from "../CardMovie";
 import MovieSwiper from "../MovieSwiper";
-import { MovieOrTv } from "../../context/MovieOrTv";
-import Loading from "../Loading";
 
 export default function PopMoviesSlider() {
   const { data, loading } = useMovieDB(`movie/popular`);

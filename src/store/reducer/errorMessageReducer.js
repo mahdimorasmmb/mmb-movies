@@ -4,6 +4,7 @@ export default function errorMessageReducer(
   state = {
     message: "",
     isActive: "hidden",
+    type: "",
   },
   action
 ) {

@@ -13,7 +13,11 @@ export default function Layout({ children }) {
       <Header />
 
       <Main>
-        <Message message={error?.message} isActive={error?.isActive} />
+        <Message
+          message={error?.message}
+          isActive={error?.isActive}
+          type={error?.type}
+        />
         {children}
       </Main>
 

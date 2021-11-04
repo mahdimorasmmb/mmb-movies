@@ -6,15 +6,18 @@ import { useSelector } from "react-redux";
 
 export default function Footer() {
   return (
-    <footer className="flex mt-2 justify-center px-4 shadow-xl text-gray-100 bg-greenHl  ">
+    <footer className="flex mt-2  justify-center px-4 shadow-xl bg-transparent text-gray-100 bg-greenHl  ">
       <div className="container py-6">
         <div className="hidden lg:flex items-center justify-center">
-          <Link className="text-gray-200 hover:text-gray-200" to="/">
+          <Link className="text-gray-200 " to="/">
             {" "}
-            <TheatersIcon sx={{ fontSize: 90 }} />
+            <TheatersIcon
+              sx={{ fontSize: 90 }}
+              className="hover:text-greenHd"
+            />
           </Link>
           <h2 className="lg:text-2xl sm:block text-xl ml-2  text-gray-200 lg:font-extrabold  ">
-            <Link className="text-gray-200 hover:text-gray-200" to="/">
+            <Link className="text-gray-200 hover:text-greenHd" to="/">
               MmbMovie
             </Link>
           </h2>

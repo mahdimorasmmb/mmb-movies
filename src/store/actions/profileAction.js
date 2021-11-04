@@ -136,11 +136,13 @@ function setWatchList(
 
 function logOut(history) {
   return async (dispatch) => {
+    const { username } = store.getState().profile.profile;
     dispatch({ type: LOG_OUT });
     window.localStorage.removeItem("store");
     window.localStorage.removeItem("session");
     history.push("/login");
-    errorMessageAction.setError(`log out ...... `, "info", true);
+
+    errorMessageAction.setError(`log out  ${username}`);
   };
 }
 

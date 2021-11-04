@@ -33,6 +33,7 @@ function login(user) {
           request_token: validate_token.request_token,
         }),
       });
+
       window.localStorage.setItem(
         "session",
         JSON.stringify(session.session_id)
