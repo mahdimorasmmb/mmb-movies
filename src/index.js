@@ -13,10 +13,18 @@ import "swiper/swiper-bundle.min.css";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
 import ErrorBoundary from "./Error/ErrorBoundary";
+import TagManager from 'react-gtm-module'
+ 
+const tagManagerArgs = {
+    gtmId: 'G-642KTQY6PD'
+}
 
-ReactGA.initialize('G-642KTQY6PD')
 
-ReactGA.pageview(window.location.pathname)
+TagManager.initialize(tagManagerArgs)
+
+
+
+
 
 
 
