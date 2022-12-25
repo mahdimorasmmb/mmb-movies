@@ -14,9 +14,11 @@ import { Provider } from "react-redux";
 import { store } from "./store/store";
 import ErrorBoundary from "./Error/ErrorBoundary";
 
-ReactGA.initialize('G-GEDZJ9NFKX')
+ReactGA.initialize('G-642KTQY6PD')
 
 ReactGA.pageview(window.location.pathname)
+
+ReactGA.testModeAPI()
 
 ReactDOM.render(
   <Provider store={store}>
