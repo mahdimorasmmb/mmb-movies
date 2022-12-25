@@ -16,16 +16,13 @@ import ErrorBoundary from "./Error/ErrorBoundary";
 import TagManager from 'react-gtm-module'
  
 const tagManagerArgs = {
-    gtmId: 'G-642KTQY6PD'
+    gtmId: 'G-642KTQY6PD',
+    events: {
+      sendUserInfo: 'userInfo'
+  }
 }
 
-
 TagManager.initialize(tagManagerArgs)
-
-
-
-
-
 
 
 ReactDOM.render(
