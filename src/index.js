@@ -18,7 +18,7 @@ ReactGA.initialize('G-642KTQY6PD')
 
 ReactGA.pageview(window.location.pathname)
 
-ReactGA.testModeAPI()
+
 
 ReactDOM.render(
   <Provider store={store}>
